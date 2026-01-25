@@ -47,9 +47,9 @@ You can use it as is, change the authentication strategy to your use case (OAuth
 
 License is MIT
 
-### Development
+## Development
 
-#### Requirements
+### Requirements
 
 - Docker (4.57.0)
 - Node (24.13.0)
@@ -73,11 +73,11 @@ Development server listens to `localhost:3000/api`
 
 Open Postman (collection)[https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19] and you are all set.
 
-#### Mail service configuration
+### Mail service configuration
 
 If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`. Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration.
 
-### Testing
+## Testing
 
 Requests logs are enabled by default for integration tests. Error logs are disabled by default (you can enable it by changing this condition [here](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/9c70227a4950a985caeff8b610362eefb50da107/src/common/filters/global-exception.filter.ts#L54))
 
@@ -158,7 +158,7 @@ participant s as server (app)
 	% TODO check if changes (specially cache/token/cookies deletion)
 ```
 
-## A note on user roles (you can change it at will)
+## A note on user roles
 
 [x] There can only exist one user related role (sysadmin, admin, user, guest).
 
