@@ -8,7 +8,7 @@ services:
       - ./config/.env.development
     environment:
       POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
+      POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     container_name: nestjs_auth_db_dev
     volumes:
