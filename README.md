@@ -78,7 +78,7 @@ License is MIT
   <br>
 - [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) for faster development and manual testing (environment and pre/post scripts configured)
   <br>
-- **Seed service** for fast development setup
+- **Seed service** for fast development setup anc checking out how it works (best use with provided Postman collection)
   <br>
 - Tons of comments that explain how things work if you get lost
   <br>
@@ -163,7 +163,9 @@ docker compose -f docker-compose.dev.yaml down && docker compose -f docker-compo
 
 Development server listens to `localhost:3000/api`. Swagger docs: `localhost:3000/api/swagger`
 
-Open [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) and you are all set.
+Open [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19).
+
+Hit `/api/seed` to populate and initialize entities. If response is `{ ok: true }`, then you are all set.
 
 <br>
 
@@ -214,72 +216,89 @@ docker compose -f docker-compose.test.yaml down && docker compose -f docker-comp
 
 ## Auth cycle
 
-JWT access token is used for stateless authentication. JWT refresh token used for token revalidation.
-Refresh token is stored in cache for token rotation and invalidation. Its key is a random uuid that contains the users information: id, roles and active status.
-CSRF token is used as an extra layer of security, in a signed double submission pattern (regular cookie + http header)
+The following explains how the authentication is set and configured for the template.
 
-`/login` and `/auth/revalidate-credentials` rotates cached tokens.
+**You can modify any of these defaults to suit your own needs**.
 
-Accessing `private` routes relies only on valid access token (Authentication check)
-Accessing `protected` routes adds csrf token validation plus user's status and role (Authorization check)
+JWT access token is used for stateless authentication.
+JWT refresh token used for token revalidation with a specific `check` claim and sent in `httpOnly` `signed` `secure` `SameSite=strict` cookie.
 
-`/auth/logout`, user invalidation / modification that denies access, same as valid requests for password change invalidate refresh tokens, forbidding access to protected routes, yet keeping access to private routes for the lifetime of access token (short lived).
+Refresh token is stored in cache for token rotation and invalidation. Its key contains the user's id. Its value contains user information (id, roles and active status) and a hash to be checked against the `check` claim.
 
-Csrf token are rotated on login, revalidate-credentials (alongside access/refresh tokens) and logout. They are otherwise valid per user session until access token expires (which forces all token rotation).
+CSRF token is used as an extra layer of security, in a signed double submission pattern (`x-csrf-token` header and `__Host-csrf` cookie token). CSRF cookie is **not** `httpOnly` for easier client manipulation.
+
+`/login`, `/auth/logout` and `/auth/revalidate-credentials` rotates cached tokens.
+
+Accessing `private` routes relies only on valid access token. (`GET` only)
+Accessing `protected` routes adds CSRF token validation plus user's status and role (`POST`, `PATCH`, `DELETE`)
+
+Logout, user deletion and user access denial, as well as requests for password change (`/recover-credentials`, `/reset-password`) **all rotate tokens (refresh and csrf)**, forbidding access to **protected routes**, yet keeping access to private routes accessible for the lifetime of access token (short lived).
+
+CSRF token is valid until access token expires, users logouts or any other situation where tokens get rotated.
+
+<br>
 
 ```mermaid
 sequenceDiagram
-participant c as browser (app)
-participant s as server (app)
+participant c as client (browser/app)
+participant s as server (/api)
 
-    Note over c,s: Public endpoints (api/auth)
+    Note over c,s: Registration / Signup flow
 	c->>s : POST /signup
     activate s
-	Note right of s: - Creates user<br> - Sends verification email
+	Note right of s: - Creates user if not already created<br> - Sends OTP code for verification to email
     s-->>c : 200 OK
     deactivate s
 
-    c->>s: GET /verify-account?token=123
+    c->>s: POST /verify-account <br> { code, email }
     activate s
     Note right of s: - Query user with token <br> - Flags user if valid (verifiedAccount)
     s-->>c: 200 OK
     deactivate s
 
-    c->>s: POST /login
+  Note over c,s: Login / Logout flow
+
+    c->>s: POST /login <br> { slug, password }
     activate s
-    Note right of s: - Query user and check credentials <br> - Generates token if valid<br> - Sets cookies and returns access token
+    Note right of s: - Query user and check credentials <br> - Generates tokens if valid credentials <br> - Rotates tokens (if any) <br> - Returns access token <br> - Sets CSRF cookie token and header <br> - Sets authorization cookies (refresh token)
     s-->>c: 200 OK : { accessToken }
     deactivate s
 
-    c->>s: GET /logout
+    c->>s: POST /auth/logout <br> (cookies and csrf header in request)
     activate s
-    Note right of s: - Revokes refresh token (db delete) <br> - Clears cookies (httpOnly) <br> - Clears cache
+    Note right of s: - Checks valid refresh token from signed cookie <br> - Revokes refresh token (cache delete) <br> - Clears all cookies (auth and csrf)
     s-->>c: 200 OK
     deactivate s
 
-    c->>s: GET /revalidate-credentials
-    Note over c: Access token expired <br> (auth by cookies)
+  Note over c,s: Token revalidation flow
+
+    Note over c: Access token expired <br> (auth by httpOnly cookies)
+    c->>s: POST /revalidate-credentials <br> (cookies and csrf header in request)
     activate s
-    Note right of s: - Queries refresh token <br> - Deletes old token and create new user tokens <br> - Returns new user tokens <br> - Sets new cookies <br> - Updates cache
+    Note right of s: - Checks valid CSRF token <br> - Checks valid refresh token: expiration and cache store <br> (IF INVALID: User must login) <br> - Rotates tokens (remove old cached token) <br> - Returns new access token <br> - Sets new CSRF cookie token and header <br> - Sets authorization cookies (new refresh token)
     s-->>c: 200 OK { accessToken }
     deactivate s
 
+
+
+  Note over c,s: Credentials recovery flow <br> (Forgotten user/mail/password. Reset password)
+
     c->>s: POST /recover-credentials
     activate s
-    Note right of s: - Queries user <br> - Clear previous tokens (refresh and recovery) <br> - Clears cache <br> - Sends recovery email
+    Note right of s: - Queries and validates user <br> - Sends recovery email <br> - Clears all cookies
     s-->>c: 200 OK
     deactivate s
 
-    c->>s: POST /reset-password
-    Note over c: Send new password and recovery token <br>(sent through /recover-credentials)
+    Note over c: Receives email with recovery token <br> Sends new password and recovery token
+    c->>s: POST /reset-password <br> { password, recoveryToken }
     activate s
-    Note right of s: - Checks if recovery token is valid <br> - Queries user, changes new password <br> - Clear cache and delete tokens
+    Note right of s: - Queries and validates recovery token <br> - Queries and validates user <br> - Checks valid new password <br> - Updates password, rotates cache tokens (if any) <br> and deletes all recovery tokens related to user <br> - Clears all cookies
     s-->>c: 200 OK
     deactivate s
 
-
-	% TODO check if changes (specially cache/token/cookies deletion)
 ```
+
+<br>
 
 ## A note on user roles
 
