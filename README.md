@@ -10,9 +10,9 @@ This was developed during a larger project and it seemed to be a monster of its 
 
 You can roll your own auth and develop everything from scratch (which I certainly encourage you to do), with all the time and pain that involves (which is totally worth it, yet maybe not for someone that needs an auth solution with urgency).
 
-You can delegate authentication to battle-tested solutions with third-party packages. You trust them they do all the heavy lifting for you and taking advantage of the free plans while they last.
+You can delegate authentication to battle-tested solutions with third-party packages. You trust them they do all the heavy lifting for you and taking advantage of the free plans while they last, and you are willing to spend the time it will take to understand the docs (a learning curve that not everybody wants to go through).
 
-Or you can try this template if you like to tinker with stuff without paying a dime while always having the control over your own auth flow.
+Or you can try this template if you just want to see the code and be able to tinker with it without paying a dime while always having the control over your own auth flow. No subscription, no free or premium plans, just the code.
 
 ## What's included
 
