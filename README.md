@@ -1,6 +1,8 @@
-# NestJS Auth bootstrap template ([Check it in action here]())
+# NestJS Auth bootstrap template
 
 Template for fast NestJS application bootstrapping if you want to role your own auth.
+
+<!-- ([Check it in action here]()) -->
 
 ## Why?
 
@@ -29,26 +31,28 @@ This was developed during a larger project and it seemed to be a monster of its 
 
 ## Who is this for
 
-1. You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication and don't have a clue how to do so.
+1. _You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication and don't have a clue how to do so._
 
-2. You just want something to work out of the box and don't mind adjusting some configs ([explained below]()). You also want the freedom to expand and discard what you don't need for your particular project.
+2. _You just want something to work out of the box and don't mind adjusting some configs ([explained below](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/tree/main?tab=readme-ov-file#requirements)). You also want the freedom to expand and discard what you don't need for your particular project._
 
-3. You want a solution you can test fast and ship faster without third-party solutions (You have the control over everything: token cache store, user roles, )
+3. You want a solution you can test fast and ship faster without third-party solutions (You have the control over everything: token cache store, user roles, credentials recovery, account verification, etc).
 
 You can roll your own and develop everything from scratch (which I certainly encourage you to do), with all the time and pain that involves. You can delegate it to already battle tested solutions with third-party packages (OAuth for example). Or
 
 ## What can you do with this
 
-Whatever you want. License is MIT
+Whatever you want.
 
 You can use it as is, change the authentication strategy to your use case (OAuth), extend and implemente your token reuse detection solution, use it to learn how somebody else thought about authentication / authorization, remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, try to crack it and find vulnerabilities I did not consider.
+
+License is MIT
 
 ### Development
 
 #### Requirements
 
-- Docker (v4.57.0)
-- Node
+- Docker (4.57.0)
+- Node (24.13.0)
 - Volta (optional)
 
 Create your own `.env.development` file using the template provided in the `/config` directory (env file must be here unless you modify how you want docker compose to look for it)
@@ -69,9 +73,13 @@ Development server listens to `localhost:3000/api`
 
 Open Postman (collection)[https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19] and you are all set.
 
+#### Mail service configuration
+
+If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`. Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration.
+
 ### Testing
 
-Requests logs are enabled by default for integration tests. Error logs are disabled by default (you can enable it by changing this condition [here]())
+Requests logs are enabled by default for integration tests. Error logs are disabled by default (you can enable it by changing this condition [here](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/9c70227a4950a985caeff8b610362eefb50da107/src/common/filters/global-exception.filter.ts#L54))
 
 Use `DEBUG=testcontainers*` if you want to check logs when using test containers
 
@@ -150,21 +158,17 @@ participant s as server (app)
 	% TODO check if changes (specially cache/token/cookies deletion)
 ```
 
-## A note on user roles
+## A note on user roles (you can change it at will)
 
-[ ] There can only exist one user related role (sysadmin, admin, user, guest) and many task-related roles (task-agent, product-agent)
+[x] There can only exist one user related role (sysadmin, admin, user, guest).
 
-[ ] Sysadmin can assign any role, to themselves or other users.
+[x] Sysadmin can assign any role, to themselves or other users.
 
-[ ] Admins can only assign admin roles and all the other task-related roles, to themselves or other users
+[x] Admins can only assign admin roles and less priviledge roles, to themselves or other users.
 
-[ ] Users with plain user and guest roles can't modify any of their own roles, nor modify other users roles
+[x] Users with plain user and guest roles can't modify any of their own roles, nor modify other users roles
 
-[ ] Personal data (like email and password) can only be modified by the same users that make the update request.
-
-# Mail service configuration
-
-If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`. Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration.
+[x] Personal data (like email and password) can only be modified by the users that are affected (Sysadmin can't modify these, yet it can revoke all access/delete any user).
 
 # Special thanks
 
