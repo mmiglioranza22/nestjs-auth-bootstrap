@@ -40,7 +40,7 @@ Before any claim or objection is pointed out, know that **all authentication sol
 
 There are no silver bullets, just less worse solutions which can be improved significantly when their common pitfalls are addressed (which this template attempts to do).
 
-You will come across several resources and opinions that state that JWT is far to complicated for simple MVPs or POCs when deciding how to solve authentication. And partly those opinions are true because getting it right is not a trivial matter and JWT are not ideal for all usecases. Centralized authentication solutions (like sessions) can be far better for other projects that do not talk with other applications, have low to moderate traffic, require instant access revocation
+You will come across several resources and opinions that state that JWT is far to complicated for simple MVPs or POCs when deciding how to solve authentication. And partly those opinions are true because getting it right is not a trivial matter and JWT are not ideal for all usecases. Centralized authentication solutions (like sessions) can be far better for other projects that do not talk with other applications, have low to moderate traffic, require instant access revocation, or any other reason that makes JWT not suitable.
 
 Some sensible objections to JWT that were addressed:
 
