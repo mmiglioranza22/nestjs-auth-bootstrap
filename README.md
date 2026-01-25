@@ -75,13 +75,14 @@ docker compose -f docker-compose.dev.yaml down && docker compose -f docker-compo
 
 Development server listens to `localhost:3000/api`
 
-Open Postman (collection)[https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19] and you are all set.
+Open [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) and you are all set.
 
 ### Mail service configuration
 
-If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`. Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration.
+If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`.
+Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration (sandbox tab)
 
-# Troubleshooting - Notice on first time running postgres containers
+#### Troubleshooting - Notice on first time running postgres containers
 
 Postgres demands `POSTGRES_PASSWORD` variable to be set on the first time docker compose runs. Although this is done by TypeORM when initializing the application, the password variable at the time the container starts up is not available (It then reads the variable from the `.env.development` file).
 
