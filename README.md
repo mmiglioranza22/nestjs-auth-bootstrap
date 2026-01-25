@@ -6,15 +6,15 @@ Speed up your development and your time to market with a transparent JWT authent
 
 ### Index
 
-1. Why?
-2. Who is this for?
-3. What can you do with this?
-4. What's included?
-5. Why JWT?
-6. Development
-7. Testing
-8. Auth cycle
-9. A note on user roles (specific to this template)
+[1. Why?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why)
+[2. Who is this for?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#who-is-this-for)
+[3. What can you do with this?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#what-can-you-do-with-this)
+[4. What's included?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#whats-included)
+[5. Why JWT?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why-jwt)
+[6. Development](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#development)
+[7. Testing](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#testing)
+[8. Auth cycle](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#auth-cycle)
+[9. A note on user roles (specific to this template)](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#a-note-on-user-roles)
 
 ## Why?
 
