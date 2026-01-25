@@ -28,19 +28,19 @@ Or you can try this template if you just want to see the code and be able to tin
 
 ## Who is this for?
 
-1. _You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication, you don't have a clue how to do so or you don't have a preferred solution to that problem._
+1. _You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication, you don't have a clue how to do so or you don't have a preferred solution to that problem, might as well try one already implemented and tested._
 
 2. _You just want something to work out of the box and don't mind adjusting some configs ([explained below](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/tree/main?tab=readme-ov-file#requirements)). You also want the freedom to expand and discard what you don't need for your particular project. (You can use this as a skeleton for your custom authentication strategy: sessions, api keys, choose your pick)._
 
-3. _You want a solution you can test fast and ship faster without third-party solutions (You have the control over everything: token cache store, user roles, credentials recovery, account verification, etc)._
+3. _You want a solution you can test fast and ship faster without third-party solutions. You want to keep control over everything (token cache store, user roles, credentials recovery, account verification, etc) while still being able to customize it to your needs._
 
-4. _Security is paramaount to your application and you need a scalable and secure solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature._
+4. _Security is paramaount to your application and you need a scalable and performant solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature._
 
 ## What can you do with this?
 
 Whatever you want.
 
-You can use it as is, change the authentication strategy to your use case (OAuth), extend it and implement your own token reuse detection solution, remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, try to crack it and find vulnerabilities unknown until now.
+You can use it as is, developr your own authentication strategy to your use case, extend it and implement your own token reuse detection solution (to enable multiple device login for example or blacklist used access token), remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, play around trying to crack it and find vulnerabilities unknown until now (you can submit them if you do!)
 
 License is MIT
 
