@@ -12,7 +12,7 @@ You can roll your own auth and develop everything from scratch (which I certainl
 
 You can delegate it to battle-tested solutions with third-party packages (OAuth for example). You trust them they do all the heavy lifting for you and taking advantage of the free plans while they last
 
-Or you can try this template if you like to tinker with stuff without paying a dime for
+Or you can try this template if you like to tinker with stuff without paying a dime and always having the control over your auth flow.
 
 ## What's included
 
@@ -24,16 +24,15 @@ Or you can try this template if you like to tinker with stuff without paying a d
   - `x-csrf-token` header and `__Host-csrf` cookie token
 - Cache store for token rotation on each token revalidation: when `accessToken` expires (**Redis** implementation)
 - Docker compose files to work with your development and test environments
-- Vitest unit and integration testing with [Testcontainers](https://testcontainers.com/). (Optional docker compose tests too if you don't want to use testcontainers)
-- Basic mail service (**Nodemailer** solution. You can configure it or change it completely for a different provider)
+- Unit and integration testing (Vitest + [Testcontainers](https://testcontainers.com/)). (Optional docker compose tests too if you don't want to use Testcontainers)
+- Basic mail service (**`nodemailer`** solution. You can configure it or change it completely for a different provider)
 - Swagger docs (`api/swagger`)
-- Basic **Throttler** module (mainly useful for production environment. Configure it for your use case)
-- Basic **ClsModule** module (for [request identification](https://papooch.github.io/nestjs-cls/features-and-use-cases/request-id), should you want to monitor specific requests or share context easily)
-- LoggerModule with [nestjs-pino](https://github.com/iamolegga/nestjs-pino)
-- Postman collection for faster development and manual testing (pre and post scripts already configured) ([click here](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19))
-- [dotenvx](https://dotenvx.com/) installed to avoid spilling your secrets (Configuration depends on each user)
+- Basic **`Throttler`** module (mainly useful for production environment. Configure it for your use case)
+- Basic **`ClsModule`** module (for [request identification](https://papooch.github.io/nestjs-cls/features-and-use-cases/request-id), should you want to monitor specific requests or share context easily)
+- `LoggerModule` with [nestjs-pino](https://github.com/iamolegga/nestjs-pino). (Optional: change log level at runtime)
+- [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) for faster development and manual testing (environment and pre/post scripts configured)
 - **Seed service** for fast development setup
-- Tons of comments that explain how things work if you get lost
+- Tons of comments that explain how things work if you get lost.
 
 ## Who is this for
 
@@ -47,7 +46,7 @@ Or you can try this template if you like to tinker with stuff without paying a d
 
 Whatever you want.
 
-You can use it as is, change the authentication strategy to your use case (OAuth), extend and implemente your token reuse detection solution, use it to learn how somebody else thought about authentication / authorization, remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, try to crack it and find vulnerabilities I did not consider.
+You can use it as is, change the authentication strategy to your use case (OAuth), extend it and implement your own token reuse detection solution, remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, try to crack it and find vulnerabilities unknown until now.
 
 License is MIT
 
