@@ -81,6 +81,16 @@ Open Postman (collection)[https://www.postman.com/orbital-module-astronomer-6695
 
 If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`. Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration.
 
+# Troubleshooting - Notice on first time running postgres containers
+
+Postgres demands `POSTGRES_PASSWORD` variable to be set on the first time docker compose runs. Although this is done by TypeORM when initializing the application, the password variable at the time the container starts up is not available (It then reads the variable from the `.env.development` file).
+
+Docker needs to read these variables from an `.env` file on startup.
+
+`.env` file is added in this repository for easy testing and development. **If you eventually use your own variables, REMEMBER TO ADD `.env` TO YOUR `.gitignore` FILE.**
+
+This is merely a development issue. For a production release, use the strategy that best suits your CI/CD to prevent using an `.env` file with secrets
+
 ## Testing
 
 Requests logs are enabled by default for integration tests. Error logs are disabled by default (you can enable it by changing this condition [here](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/9c70227a4950a985caeff8b610362eefb50da107/src/common/filters/global-exception.filter.ts#L54))

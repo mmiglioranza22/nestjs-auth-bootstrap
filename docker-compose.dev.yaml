@@ -6,7 +6,11 @@ services:
       - "5432:5432"
     env_file:
       - ./config/.env.development
-    container_name: db_dev
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    container_name: nestjs_auth_db_dev
     volumes:
       - ./postgres_data:/var/lib/postgresql
 
