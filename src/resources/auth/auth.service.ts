@@ -170,7 +170,6 @@ export class AuthService {
     const token =
       await this.recoveryTokenService.getRecoveryToken(recoveryToken);
 
-    // could make util for comparison
     if (!token || token.expiresAt.getTime() < Date.now()) {
       throw new BadRequestException(ErrorMessages.INVALID_RECOVERY_TOKEN);
     }

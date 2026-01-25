@@ -114,9 +114,11 @@ export class UserService {
       await this.canUpdatePassword(user, password, oldPassword);
       if (password) {
         user.hash = await generateHash(password);
+        // ? can use mail service to inform password change
       }
       if (email) {
         user.email = email;
+        // ? can use mail service to inform email change
       }
     }
     // * email and password change made by other users (admins, sysadmins) fail silently

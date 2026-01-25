@@ -127,7 +127,6 @@ export class MailService {
       recipients[0] = 'test-recipient@mail.com';
     }
 
-    // Unique link with user info to FE/auth/verify-email
     const confirmLink = `http://frontend.app.url.to.redirect.from.and.read.token.query/change-email?token=${userId}`;
     const mailOptions: SendMailOptions = {
       from: sender,

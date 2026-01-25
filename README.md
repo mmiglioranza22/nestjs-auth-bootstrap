@@ -36,6 +36,8 @@ Or you can try this template if you just want to see the code and be able to tin
 
 4. _Security is paramaount to your application and you need a scalable and performant solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature._
 
+5. _Your application uses REST (you could adapt it to your need, but know quite a lot of refactor could be needed)_
+
 ## What can you do with this?
 
 Whatever you want.
@@ -72,7 +74,7 @@ License is MIT
   <br>
 - Basic **`ClsModule`** module (for [request identification](https://papooch.github.io/nestjs-cls/features-and-use-cases/request-id), should you want to monitor specific requests or share context easily)
   <br>
-- `LoggerModule` with [nestjs-pino](https://github.com/iamolegga/nestjs-pino). (Optional: change log level at runtime)
+- `LoggerModule` with [`nestjs-pino`](https://github.com/iamolegga/nestjs-pino). (Optional: change log level at runtime)
   <br>
 - [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) for faster development and manual testing (environment and pre/post scripts configured)
   <br>
@@ -81,21 +83,25 @@ License is MIT
 - Tons of comments that explain how things work if you get lost
   <br>
 
+Least but most important, **the ability to modify any of the above to fit your specific needs**. That said, the template `**CORS**` configuration might not be the one you need **and it is up to you to configure it (just passing the options you want)**
+
 ## Why [JWT](https://youtu.be/P2CPd9ynFLg?si=mKVvy1h3_ERcrF6W)?
 
-Before any claim or objection is pointed out, know that, like most things in programming, **all authentication solutions have their own tradeoffs and usecases**.
+Before any claim or objection is pointed out, know that like most things in programming, **all authentication solutions have their own tradeoffs and usecases**.
 
 There are no silver bullets, just less worse solutions which can be improved significantly when their common pitfalls are addressed (which this template attempts to do).
 
-You will come across several resources and opinions that state that JWT is far too complicated for simple MVPs or POCs when deciding how to solve authentication. And partly those opinions are true because getting it right is not a trivial matter and JWT are not ideal for all usecases. Centralized authentication solutions (like sessions) can be far better for other projects that do not talk with other applications, have low to moderate traffic, require instant access revocation, or any other reason that makes JWT not suitable.
+You will come across several resources and opinions that state that JWT is far too complicated for simple MVPs or POCs when deciding how to solve authentication, or that is not inteded at all for authentication. And partly those opinions are true because getting it right is not a trivial matter and JWT are not ideal for all usecases. Centralized authentication solutions (like sessions) can be far better for other projects that do not talk with other applications, have low to moderate traffic, require instant access revocation, or any other reason that makes JWT not suitable.
 
-Some sensible objections to JWT that were addressed in this template are:
+Some sensible objections to JWT that were addressed in this project are:
 
 1. _**JWT can't be revoked on logout**_:
 
-This is the reason why JWTs good practices encourage to make them short lived (minutes). And still, for a small time window those JWT will remain valid. **However**, this template ensures that once the user is logout out, subsequent requests to protected routes (POST, PATCH, DELETE) will result in `Unauthorized` `401` responses.
+This is the reason why JWT good practices encourage to make them short lived (minutes). And still, for a small time window those JWT will remain valid. **However**, this template ensures that once the user logouts, subsequent requests to protected routes (POST, PATCH, DELETE) will result in `Unauthorized` `401` responses.
 
-The same thing is done should the user be revoked access while still being logged. This is achieved by keeping track of logged users in a cache store (like a session storage) and making all sensible routes `@Protected`. Read-only routes (GET) will still be accessible for the short lifetime of the access token (which you could just solve by changing `@Private` routes to `@Protected`)
+The same thing is done should the user be revoked access while still being logged. This is achieved by keeping track of currently logged users in a cache store (like a session storage used for refresh tokens) and making all sensible routes `@Protected`. Read-only routes (GET) will still be accessible for the short lifetime of the access token (which you could just solve by changing `@Private` routes to `@Protected`).
+
+Token rotation on login, logout, token revalidation, user deletion or specific user access revocation ensures all protected routes are inaccessible **immediately** and private routes only accesible for the remaining lifespan of the access token.
 
 2. _**JWT are not safe as they can be read by anyone**_:
 
@@ -103,14 +109,14 @@ This is part of the specification for JWT and the reason why tokens in this temp
 
 - they are signed with a strong secret that is stored securely
 - use short expiration time
-- only use `https` (which should be the default for any type of communication, not just JWTs)
+- are transmitted by `https` (which should be the default for any type of communication, not just JWTs)
 - stored by the client in signed, secure `httpOnly` cookies (preventing Cross-Site Scripting)
 
 The interface used for access tokens only use the `sub` property. Refresh tokens add an extra `check` property used check its respective hash which is stored in cache (You can make this validation process even faster by just storing and checking the plain `check` value)
 
 <br>
 
-```
+```ts
 export interface JwtPayload {
   sub: string;
   check?: string;
@@ -121,13 +127,15 @@ export interface JwtPayload {
 
 3. _**JWT are not suited for fine grain control**_:
 
-This is an **auhorization issue**, not a JWT pitfall. Each project handles authorization differently (this template uses **role based** authorization without using JWT claims for that) Read the [second point](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/edit/main/README.md#:~:text=66-,67,-68) listed above: JWT are used here for authentication (granting access based on who the user is), hence they remain slim and reveal no information whatsoever of which resources can be accessed or which permissions are granted to a specific user (Which might not be just the usecase for your project. Adapt accordingly)
+Each project handles authorization differently (this template uses **role based** authorization without using JWT for that). Read the [second point](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/edit/main/README.md#:~:text=66-,67,-68) listed above: JWT are used here for authentication (granting access based on who the user is), hence they remain slim and reveal no information whatsoever of which resources can be accessed or which permissions are granted to a specific user (Which might not be just the usecase for your project. Adapt accordingly)
 
 4. _**Still JWT are not safe against CSRF threats, they are useless against them!**_:
 
 These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is usless for the purpose of hammering nails: it is just not the tool for that.
 
 CSRF threats are addressed by CSRF specific solutions, which this template conveniently has by implementing the signed double submit CSRF pattern. This implementation was developed with AI and tested for common pitfalls (timing attacks for different token lengths) and is transparent for you to check it out, enhance or modify it completely. You can check how it was developed [here](https://github.com/mmiglioranza22/chatgptools/blob/fcaff05045a8751c65779681496577279be8bfc0/csrf_utils/README.md)
+
+Not satisfied with the provided CSRF solution? You can reuse most components and implement [`csrf-csrf`](https://github.com/Psifi-Solutions/csrf-csrf) yourself
 
 <br>
 
@@ -153,7 +161,7 @@ or my favourite
 docker compose -f docker-compose.dev.yaml down && docker compose -f docker-compose.dev.yaml up -d && pnpm run start:dev
 ```
 
-Development server listens to `localhost:3000/api`
+Development server listens to `localhost:3000/api`. Swagger docs: `localhost:3000/api/swagger`
 
 Open [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) and you are all set.
 
