@@ -185,7 +185,13 @@ Docker needs to read these variables from an `.env` file on startup.
 <br>
 
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+
+<br>
+
 🚨🚨 **If you eventually use your own variables, REMEMBER TO ADD `.env` TO YOUR `.gitignore` FILE.** 🚨🚨
+
+<br>
+
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
 
 This is merely a development issue. For a production release, use the strategy that best suits your CI/CD to prevent using an `.env` file with secrets
