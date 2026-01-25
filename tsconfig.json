@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "module": "commonjs",
+    "target": "ES2023",
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "@common/*": ["src/common/*"],
+      "@auth/*": ["src/resources/auth/*"]
+    },
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+    "types": ["vitest/globals", "jest-extended"]
+  }
+}

@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:18.1-alpine3.22
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./config/.env.test
+    container_name: db_test
+    volumes:
+      - ./postgres_data:/var/lib/postgresql
+
+  cache:
+    image: redis:8.4.0-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    container_name: cache_test
+    volumes:
+      - ./redis_data:/data
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  redis_data:

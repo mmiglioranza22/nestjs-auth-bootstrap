@@ -1,0 +1,76 @@
+# Dependencies
+pnpm-lock.yaml
+package-lock.json
+# compiled output
+/dist
+/node_modules
+/build
+# swc
+metadata.ts
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Postgres
+# normal image
+postgres
+# alpine image
+postgres_data
+
+# Redis
+redis_data
+
+# OS
+.DS_Store
+
+# Tests
+/.nyc_output
+/coverage
+/coverage-unit
+/coverage-int
+/coverage-e2e
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env.development.local
+.env.development
+.env.test.local
+.env.production.local
+.env.production
+.env.local
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+*.sql
