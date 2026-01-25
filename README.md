@@ -56,7 +56,7 @@ License is MIT
     <br>
   - `Authorization` cookie with refresh token (`HttpOnly`, `SameSite`, `Secure`, `Signed`).
     <br>
-- Signed Double CSRF Cookie pattern implementation:
+- Signed Double [CSRF](https://github.com/pillarjs/understanding-csrf) Cookie pattern implementation:
   <br>
   - `x-csrf-token` header and `__Host-csrf` cookie token
     <br>
@@ -326,3 +326,11 @@ I will be adding a list of all the resources I used here. This project was made 
 - [Computerix NestJS playlist](https://www.youtube.com/watch?v=bP7CFznd8o0&list=PLHVUNsO6sqSpeFjQBl1KZMYEI-IL5idqZ)
 - [WittCode Security playlist](https://www.youtube.com/watch?v=PbzvureDBJw&list=PLkqiWyX-_Losd0Qc584EcU2A1aHvF7Snc), in particular videos related to JWT access and refresh tokens, CSRF.
 - [WebDevSimplified video on CSRF tokens](https://youtu.be/80S8h5hEwTY?si=18kkrUlcDakpKm_f)
+
+#### Found anything useful? Gift a star! Share the repository
+
+#### Want to contribute? Make a fork and submit your suggestions _(keep changes small (100-200 lines per PR))_
+
+#### Still want to contribute with ideas or observations you made on the code? Open an issue _(keep it as short as possible)_
+
+#### Any AI generated PRs / issues will be discarded at once if no follow up is provided.
