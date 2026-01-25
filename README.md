@@ -36,7 +36,7 @@ Or you can try this template if you just want to see the code and be able to tin
 
 ## Why [JWT](https://youtu.be/P2CPd9ynFLg?si=mKVvy1h3_ERcrF6W) ?
 
-Before any claim or objection is pointed out, know that **all authentication solutions have their own tradeoffs and usecases**. 
+Before any claim or objection is pointed out, know that, like most things in programming, **all authentication solutions have their own tradeoffs and usecases**. 
 
 There are no silver bullets, just less worse solutions which can be improved significantly when their common pitfalls are addressed (which this template attempts to do).
 
