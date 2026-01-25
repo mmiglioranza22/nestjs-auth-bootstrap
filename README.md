@@ -2,11 +2,17 @@
 
 Template for fast NestJS application bootstrapping if you want to role your own auth.
 
-<!-- ([Check it in action here]()) -->
+<!-- ([Check it in action here]())  upload video-->
 
 ## Why?
 
 This was developed during a larger project and it seemed to be a monster of its own that could be useful for anybody struggling with authentication and authorization in NestJS.
+
+You can roll your own auth and develop everything from scratch (which I certainly encourage you to do), with all the time and pain that involves (totally worth it, yet maybe not for someone in a hurry to ship with urgency).
+
+You can delegate it to battle-tested solutions with third-party packages (OAuth for example). You trust them they do all the heavy lifting for you and taking advantage of the free plans while they last
+
+Or you can try this template if you like to tinker with stuff without paying a dime for
 
 ## What's included
 
@@ -35,9 +41,7 @@ This was developed during a larger project and it seemed to be a monster of its 
 
 2. _You just want something to work out of the box and don't mind adjusting some configs ([explained below](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/tree/main?tab=readme-ov-file#requirements)). You also want the freedom to expand and discard what you don't need for your particular project._
 
-3. You want a solution you can test fast and ship faster without third-party solutions (You have the control over everything: token cache store, user roles, credentials recovery, account verification, etc).
-
-You can roll your own and develop everything from scratch (which I certainly encourage you to do), with all the time and pain that involves. You can delegate it to already battle tested solutions with third-party packages (OAuth for example). Or
+3. _You want a solution you can test fast and ship faster without third-party solutions (You have the control over everything: token cache store, user roles, credentials recovery, account verification, etc)._
 
 ## What can you do with this
 
@@ -55,7 +59,7 @@ License is MIT
 - Node (24.13.0)
 - Volta (optional)
 
-Create your own `.env.development` file using the template provided in the `/config` directory (env file must be here unless you modify how you want docker compose to look for it)
+After cloning the repository, you should create an `.env.development` file with your own variables using the template provided in the `/config` directory (env file must be located in that directory unless you modify how you want docker compose to look for it)
 
 ```
 pnpm i
