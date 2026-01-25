@@ -4,6 +4,18 @@ Speed up your development and your time to market with a transparent JWT authent
 
 <!-- ([Check it in action here]())  upload video-->
 
+### Index
+
+1. Why?
+2. Who is this for?
+3. What can you do with this?
+4. What's included?
+5. Why JWT?
+6. Development
+7. Testing
+8. Auth cycle
+9. A note on user roles (specific to this template)
+
 ## Why?
 
 This was developed during a larger project and it seemed to be a monster of its own that could be useful for anybody struggling with authentication and authorization in NestJS.
@@ -35,26 +47,43 @@ License is MIT
 ## What's included?
 
 - Basic `User` and `Role` entities (**TypeORM** implementation)
+  <br>
 - **JWT** based authentication strategy implemented:
+  <br>
   - `accessToken` in response body for client manipulation.
+    <br>
   - `Authorization` cookie with refresh token (`HttpOnly`, `SameSite`, `Secure`, `Signed`).
+    <br>
 - Signed Double CSRF Cookie pattern implementation:
+  <br>
   - `x-csrf-token` header and `__Host-csrf` cookie token
+    <br>
 - Cache store for token rotation on each token revalidation and user logout (**Redis** implementation)
+  <br>
 - Docker compose files to work with your development and test environments
+  <br>
 - Unit and integration testing (Vitest + [Testcontainers](https://testcontainers.com/)). (Optional docker compose tests too if you don't want to use Testcontainers)
+  <br>
 - Basic mail service (**`nodemailer`** solution. You can configure it or change it completely for a different provider)
+  <br>
 - Swagger docs (`api/swagger`)
+  <br>
 - Basic **`Throttler`** module (mainly useful for production environment. Configure it for your use case)
+  <br>
 - Basic **`ClsModule`** module (for [request identification](https://papooch.github.io/nestjs-cls/features-and-use-cases/request-id), should you want to monitor specific requests or share context easily)
+  <br>
 - `LoggerModule` with [nestjs-pino](https://github.com/iamolegga/nestjs-pino). (Optional: change log level at runtime)
+  <br>
 - [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) for faster development and manual testing (environment and pre/post scripts configured)
+  <br>
 - **Seed service** for fast development setup
+  <br>
 - Tons of comments that explain how things work if you get lost
+  <br>
 
 ## Why [JWT](https://youtu.be/P2CPd9ynFLg?si=mKVvy1h3_ERcrF6W)?
 
-Before any claim or objection is pointed out, know that, like most things in programming, **all authentication solutions have their own tradeoffs and usecases**. 
+Before any claim or objection is pointed out, know that, like most things in programming, **all authentication solutions have their own tradeoffs and usecases**.
 
 There are no silver bullets, just less worse solutions which can be improved significantly when their common pitfalls are addressed (which this template attempts to do).
 
@@ -64,7 +93,7 @@ Some sensible objections to JWT that were addressed in this template are:
 
 1. _**JWT can't be revoked on logout**_:
 
-This is the reason why JWTs good practices encourage to make them short lived (minutes). And still, for a small time window those JWT will remain valid. **However**, this template ensures that once the user is logout out, subsequent requests to protected routes (POST, PATCH, DELETE) will result in `Unauthorized` `401` responses. 
+This is the reason why JWTs good practices encourage to make them short lived (minutes). And still, for a small time window those JWT will remain valid. **However**, this template ensures that once the user is logout out, subsequent requests to protected routes (POST, PATCH, DELETE) will result in `Unauthorized` `401` responses.
 
 The same thing is done should the user be revoked access while still being logged. This is achieved by keeping track of logged users in a cache store (like a session storage) and making all sensible routes `@Protected`. Read-only routes (GET) will still be accessible for the short lifetime of the access token (which you could just solve by changing `@Private` routes to `@Protected`)
 
@@ -79,6 +108,8 @@ This is part of the specification for JWT and the reason why tokens in this temp
 
 The interface used for access tokens only use the `sub` property. Refresh tokens add an extra `check` property used check its respective hash which is stored in cache (You can make this validation process even faster by just storing and checking the plain `check` value)
 
+<br>
+
 ```
 export interface JwtPayload {
   sub: string;
@@ -90,18 +121,19 @@ export interface JwtPayload {
 
 3. _**JWT are not suited for fine grain control**_:
 
-This is an **auhorization issue**, not a JWT pitfall. Each projects handles authorization differently. You can misuse JWT to handle it, adding claims to it, but that is just a bad use for JWT. Read the [second point](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/edit/main/README.md#:~:text=66-,67,-68) listed above: JWT are used here for authentication, hence they remain slim and reveal no information whatsoever of which resources can be accessed or which permissions are granted to a specific user.
+This is an **auhorization issue**, not a JWT pitfall. Each project handles authorization differently (this template uses **role based** authorization without using JWT claims for that) Read the [second point](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/edit/main/README.md#:~:text=66-,67,-68) listed above: JWT are used here for authentication (granting access based on who the user is), hence they remain slim and reveal no information whatsoever of which resources can be accessed or which permissions are granted to a specific user (Which might not be just the usecase for your project. Adapt accordingly)
 
 4. _**Still JWT are not safe against CSRF threats, they are useless against them!**_:
 
-These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is usless for the purpose of hammering nails: it is just not the tool for that. 
+These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is usless for the purpose of hammering nails: it is just not the tool for that.
 
 CSRF threats are addressed by CSRF specific solutions, which this template conveniently has by implementing the signed double submit CSRF pattern. This implementation was developed with AI and tested for common pitfalls (timing attacks for different token lengths) and is transparent for you to check it out, enhance or modify it completely. You can check how it was developed [here](https://github.com/mmiglioranza22/chatgptools/blob/fcaff05045a8751c65779681496577279be8bfc0/csrf_utils/README.md)
 
+<br>
 
 ## Development
 
-### Requirements
+#### Requirements
 
 - Docker (4.57.0)
 - Node (24.13.0)
@@ -125,20 +157,28 @@ Development server listens to `localhost:3000/api`
 
 Open [Postman collection](https://www.postman.com/orbital-module-astronomer-66959558/nestjs-auth-bootstrap/collection/16327695-aa18b690-8419-4a22-a824-81af4fae7c19) and you are all set.
 
-### Mail service configuration
+<br>
+
+#### Mail service configuration
 
 If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`.
 Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration (sandbox tab)
 
-#### Troubleshooting - Notice on first time running postgres containers
+<br>
+
+#### Troubleshooting - Notice on first time running `postgres` containers
 
 Postgres demands `POSTGRES_PASSWORD` variable to be set on the first time docker compose runs. Although this is done by TypeORM when initializing the application, the password variable at the time the container starts up is not available (It then reads the variable from the `.env.development` file).
 
 Docker needs to read these variables from an `.env` file on startup.
 
-`.env` file is added in this repository for easy testing and development. **If you eventually use your own variables, REMEMBER TO ADD `.env` TO YOUR `.gitignore` FILE.**
+`.env` file is added in this repository for easy testing and development.
+
+🚨🚨🚨 **If you eventually use your own variables, REMEMBER TO ADD `.env` TO YOUR `.gitignore` FILE.** 🚨🚨🚨
 
 This is merely a development issue. For a production release, use the strategy that best suits your CI/CD to prevent using an `.env` file with secrets
+
+<br>
 
 ## Testing
 
@@ -151,6 +191,8 @@ If you dont want to use Testcontainers for integration testing, you only need to
 ```
 docker compose -f docker-compose.test.yaml down && docker compose -f docker-compose.test.yaml up -d && npx vitest run int
 ```
+
+<br>
 
 ## Auth cycle
 
@@ -223,6 +265,10 @@ participant s as server (app)
 
 ## A note on user roles
 
+This template relies on user roles for authorization, you can modify it to use any other way you deem more fit to your needs, still taking advantage of the `@Private` and `@Protected` guards used (Policy-based, claims-based, etc).
+
+That being said, user roles work like this:
+
 [x] There can only exist one user related role (sysadmin, admin, user, guest).
 
 [x] Sysadmin can assign any role, to themselves or other users.
@@ -235,7 +281,7 @@ participant s as server (app)
 
 # Special thanks
 
-I will be adding a list of all the resources I used here. This project was made possible in great part thanks to these resources:
+I will be adding a list of all the resources I used here. This project was made possible in great part thanks to them:
 
 - [NestJS official docs](https://docs.nestjs.com/)
 - [DevTalles Curso NestJS](https://cursos.devtalles.com/courses/nest)
@@ -243,5 +289,3 @@ I will be adding a list of all the resources I used here. This project was made 
 - [Computerix NestJS playlist](https://www.youtube.com/watch?v=bP7CFznd8o0&list=PLHVUNsO6sqSpeFjQBl1KZMYEI-IL5idqZ)
 - [WittCode Security playlist](https://www.youtube.com/watch?v=PbzvureDBJw&list=PLkqiWyX-_Losd0Qc584EcU2A1aHvF7Snc), in particular videos related to JWT access and refresh tokens, CSRF.
 - [WebDevSimplified video on CSRF tokens](https://youtu.be/80S8h5hEwTY?si=18kkrUlcDakpKm_f)
-
-
