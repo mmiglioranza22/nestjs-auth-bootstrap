@@ -27,6 +27,9 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
+        run: pnpm install
+
+      - name: Run linter
         run: pnpm run lint
 
   build_job:
