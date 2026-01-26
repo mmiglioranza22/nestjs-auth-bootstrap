@@ -32,12 +32,6 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      # - name: Upload Build Artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build-artifact
-      #     path: dist/ # Adjust to your build output directory
-
   test_job:
     needs: build_job
     env:
@@ -76,25 +70,3 @@ jobs:
   #       run: npm ci && npm run build
   #     - name: Test coverage
   #       run: npm run test:cov
-
-  # Most useful for deploys
-  #  - name: Download Build Artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: build-artifact
-  #         path: dist/ # Download to the same path
-
-  #
-  # check_skip_job:
-  #   runs-on:
-  #     ubuntu-20.04
-  #     # Map a step output to a job output
-  #   outputs:
-  #     output1: ${{ steps.checkSkip.outputs.shouldSkip }}
-  #   steps:
-  #     - name: "check for #skip in commit"
-  #       id: checkSkip
-  #       env:
-  #         COMMITS: ${{ toJson(github.event.commits) }}
-  #         SKIP_WORKFLOW: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
-  #       run: echo "shouldSkip=$SKIP_WORKFLOW" >> "$GITHUB_OUTPUT"
