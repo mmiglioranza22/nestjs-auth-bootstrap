@@ -16,18 +16,16 @@ import { type EnvVariables } from 'config/env-variables';
           username: configService.getOrThrow('DB_USERNAME', { infer: true }),
           password: configService.getOrThrow('DB_PASSWORD', { infer: true }),
           autoLoadEntities: true,
-          synchronize: configService.getOrThrow('NODE_ENV') !== 'production', // for production should be false and migrate manually
+          synchronize: configService.getOrThrow('NODE_ENV') !== 'production', // * for production should be false and migrate manually
           dropSchema: configService.getOrThrow('NODE_ENV') !== 'production',
           useUTC: true,
-          // * This should be considered with the production environment capabilities
+          // * This should be considered with your production environment capabilities
           retryAttempts: configService.getOrThrow('DB_RETRY_ATTEMPTS', {
             infer: true,
           }),
           retryDelay: configService.getOrThrow('DB_RETRY_DELAY', {
             infer: true,
           }),
-          // logging: true,
-          // ? toRetry() -> specific cases when retry should not be attempted (ex: redis does not connect if?)
         };
       },
     }),

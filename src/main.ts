@@ -22,7 +22,7 @@ import { AppModule } from './app.module';
 // Swagger
 import { UserModule } from './resources/user/user.module';
 import { AuthModule } from './resources/auth/auth.module';
-import { TAG } from './swagger/constants';
+import { API_TAG } from './swagger/constants';
 import { SeedModule } from './_seed/seed.module';
 import { AUTHENTICATION_COOKIE } from './resources/auth/constants';
 
@@ -61,8 +61,8 @@ export async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth(undefined, 'accessToken')
     .addCookieAuth(AUTHENTICATION_COOKIE)
-    .addTag(TAG.Auth.name, TAG.Auth.description)
-    .addTag(TAG.User.name, TAG.User.name)
+    .addTag(API_TAG.Auth.name, API_TAG.Auth.description)
+    .addTag(API_TAG.User.name, API_TAG.User.name)
     .build();
 
   const options: SwaggerDocumentOptions = {

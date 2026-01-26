@@ -7,7 +7,7 @@ import { UserRole } from 'src/resources/auth/modules/role/enum/user-role.enum';
 import { UserRoleGuard } from 'src/resources/auth/guards/user-roles/user-role.guard';
 
 // * Used for specific per role authorization
-// Authentication is assumed (mainly in controller or specific route handler) (user extracted from request)
+// Authentication is assumed (mainly in controller or specific route handler -> @Private()) (user extracted from request)
 export const AuthorizedRoles = (...args: UserRole[]) => {
   return applyDecorators(RoleProtected(...args), UseGuards(UserRoleGuard));
 };

@@ -236,10 +236,10 @@ export class UserService {
   }
 
   // * Roles are sent as immutable (not specified gets filtered out)
-  // If no roles are sent in DTO, don't modify current target user's roles
-  // If roles are sent, distinguish between empty list (remove roles) and new roles assigned (user -> admin)
+  // If no roles are sent in DTO, don't modify current target user's roles (final else case)
+  // If roles are sent, distinguish between empty list (remove roles) and new roles assigned (user -> admin) (second if case)
   // Roles array with valid roles, assign those roles (must contain previous roles if these are to be kept)
-  // Empty array of roles, assign GUEST (readonly resources)
+  // Empty array of roles, assign GUEST (readonly resources) (nested else case)
   private async updateTargetUserRoles(
     targetUser: User,
     roles: UserRole[] | undefined,

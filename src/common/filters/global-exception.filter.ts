@@ -145,12 +145,7 @@ export class GlobalExceptionsFilter extends BaseExceptionFilter {
           errorResponse.message = exception.message.split('matching')[0];
           errorResponse.error = exception.name;
           errorResponse.details = NOT_FOUND_REQUESTED_ENTITY;
-          // if (serverError) {
-          //   errorResponse.details =
-          //     'Entity should exist in database. Talk to your administrator';
-          // } else {
           errorResponse.statusCode = HttpStatus.BAD_REQUEST;
-          // }
         }
 
         if (exception instanceof UpdateValuesMissingError) {
@@ -159,7 +154,7 @@ export class GlobalExceptionsFilter extends BaseExceptionFilter {
         }
       }
 
-      // * Cache errors
+      // * Cache errors (token related)
       if (
         exception instanceof TokenExpiredError ||
         exception instanceof JsonWebTokenError

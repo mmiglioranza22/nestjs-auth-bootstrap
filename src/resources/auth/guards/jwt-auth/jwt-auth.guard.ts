@@ -47,11 +47,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       throw new UnauthorizedException(TAMPERED_ACCESS_TOKEN);
     }
 
+    // * any other error, let it bubble up
     if (err || !user) {
       return super.handleRequest(err, user, info, context, status);
     }
 
-    // * any other error, let it bubble up
     return user as TUser;
   }
 }

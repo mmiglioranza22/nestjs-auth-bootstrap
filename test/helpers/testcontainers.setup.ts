@@ -24,7 +24,7 @@ export class TestContainersSetup {
       .withWaitStrategy(
         Wait.forLogMessage('database system is ready to accept connections'),
       )
-      .withStartupTimeout(180000) // cold start take longer due to pull images
+      .withStartupTimeout(180000) // cold start take longer due to pull images in local testing
       .start();
 
     const redisContainer = await new RedisContainer('redis:8.4.0-alpine')
@@ -45,7 +45,7 @@ export class TestContainersSetup {
       .toString();
 
     // Required to wait for database to be ready for connections before test runner starts
-    // Should be below 10s to avoid hookTimeout conflicts
+    // Should be below 10s to avoid hookTimeout conflicts (or modify hookTimeout in vitest.config)
     if (timeoutMs > 0) {
       await new Promise((resolve) => setTimeout(resolve, timeoutMs));
     }

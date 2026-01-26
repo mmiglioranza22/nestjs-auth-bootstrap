@@ -1,4 +1,4 @@
-export const TAG = {
+export const API_TAG = {
   Auth: {
     name: 'Auth',
     description: 'Authentication / Authorization',

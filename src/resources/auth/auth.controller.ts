@@ -1,4 +1,4 @@
-//* Mind for response object: why we user passthrough  https://docs.nestjs.com/controllers#library-specific-approach
+// * Mind for response object: why we user passthrough  https://docs.nestjs.com/controllers#library-specific-approach
 // Nextjs cookie https://www.youtube.com/watch?v=2ZEFTpchGZo
 import * as Constants from './constants';
 import { Response } from 'express';
@@ -32,8 +32,9 @@ import { Cookies } from './decorators/cookies/cookies.decorator';
 import { CsrfCheck } from './decorators/csrf-check/csrf-check.decorator';
 import { Private } from './guards/private/private.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { API_TAG } from 'src/swagger/constants';
 
-@ApiTags('Auth')
+@ApiTags(API_TAG.Auth.name)
 @Controller()
 export class AuthController {
   constructor(

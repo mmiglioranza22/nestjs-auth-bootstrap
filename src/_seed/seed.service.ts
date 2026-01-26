@@ -56,7 +56,6 @@ export class SeedService {
 
       await this.createSysAdminUser(sysadmin);
 
-      // * not ideal, dto contains roles here
       await Promise.all(user.map((u) => this.userService.createUser(u)));
 
       this.logger.info('Database set. Seed entities created.');
@@ -70,10 +69,10 @@ export class SeedService {
 
   // * Most restricted method. Access should be limited as much as possible.
   private async createSysAdminUser(user: CreateUserDTO): Promise<void> {
-    const queryRunner = this.datasource.createQueryRunner(); // Test this?
+    const queryRunner = this.datasource.createQueryRunner();
 
     try {
-      // * Roles must be initialized (this could be decoupled), specific role could even be created here
+      // * Roles must be initialized
       const sysRole = await this.roleService.findRoles([UserRole.SYS_ADMIN]);
 
       await queryRunner.connect();

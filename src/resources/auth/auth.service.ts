@@ -53,7 +53,7 @@ export class AuthService {
     if (!user) {
       throw new InternalServerErrorException(ErrorMessages.SIGNUP_ERROR);
     }
-    // * could chage if EVP gets passed
+    // * could change if EVP gets passed (Email Verification Protocol)
     await this.mailService.sendAccountVerification(user.email);
   }
 
@@ -125,7 +125,6 @@ export class AuthService {
   async revalidateUserTokens(cookieRefreshToken: string): Promise<UserTokens> {
     const verifiedToken = await this.verifyUserRefreshToken(cookieRefreshToken);
 
-    // ? Inner errors thrown are squashed here
     if (!verifiedToken || !verifiedToken?.isValid) {
       throw new UnauthorizedException(ErrorMessages.INVALID_REFRESH_TOKEN);
     }
@@ -248,8 +247,8 @@ export class AuthService {
           error.expiredAt,
         );
       } else if (error instanceof JsonWebTokenError) {
-        // send event to monitoring with request timestamp, ip and userid
-        // cached token should not be invalidated since valid user does not need to be affected by an attacker's attempt
+        // could be send event to monitoring with request timestamp, ip and userid
+        // * cached token should not be invalidated since valid user does not need to be affected by an attacker's attempt
         throw new UnauthorizedException(ErrorMessages.TAMPERED_REFRESH_TOKEN);
       } else {
         // bubbles up specific userCanPerformAction errors

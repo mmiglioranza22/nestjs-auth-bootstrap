@@ -18,7 +18,7 @@ export const RedisFactory: FactoryProvider<Redis> = {
       keyPrefix: '',
       connectTimeout: 10000,
       keepAlive: 1000,
-      showFriendlyErrorStack: true, // ? usefull for prod?
+      showFriendlyErrorStack: true, // * Can be disabled for production
       autoResendUnfulfilledCommands: false,
       maxRetriesPerRequest: 1,
       retryStrategy(times) {

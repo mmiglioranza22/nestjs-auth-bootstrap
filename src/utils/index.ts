@@ -106,9 +106,6 @@ export const checkAllowed_User_UpdateAction = (
           return true;
         }
         // Admins are only forbidden from assigning sysadmins
-        // ? This could be even more fine tuned if Sysadmin is to be only one to manage all roles
-        // ? and Admins to manage product and task agent roles (not user)
-        // ? Subject to change in the future
         else if (agent.roles.includes(UserRole.ADMIN)) {
           if (roles.includes(UserRole.SYS_ADMIN)) {
             return false;

@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { createMock } from '@golevelup/ts-vitest';
 import { Repository } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 import { RoleService } from 'src/resources/auth/modules/role/role.service';
-// import { MailService } from 'src/mail/mail.service';
-
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { plainToInstance } from 'class-transformer';
@@ -92,11 +89,6 @@ describe(UserService.name, () => {
         }),
       );
       expect(mockUserRepository.save).toHaveBeenCalledTimes(1);
-      // expect(mockUserRepository.save).toHaveBeenCalledWith(
-      //   expect.objectContaining({
-      //     roles: expect.any(Array),
-      //   }),
-      // );
     });
 
     it('should throw if agent lacks proper permissions to make updates to other users', async () => {
@@ -201,7 +193,7 @@ describe(UserService.name, () => {
       const id = 'uuid1234';
       const dto = plainToInstance(UpdateUserDTO, {
         username: 'newUsername123',
-        email: 'new@email.com', // might fail
+        email: 'new@email.com',
         password: 'Newpasswod123!',
         oldPassword: 'OldPassword444!',
         roles: [UserRole.ADMIN],

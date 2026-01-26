@@ -12,8 +12,9 @@ import { Protected } from 'src/resources/auth/decorators/protected/protected.dec
 import { AuthorizedRoles } from 'src/resources/auth/decorators/authorized-roles/authorized-roles.decorator';
 import { UserResponseDTO } from './dto/user-response.dto';
 import { CsrfCheck } from 'src/resources/auth/decorators/csrf-check/csrf-check.decorator';
+import { API_TAG } from 'src/swagger/constants';
 
-@ApiTags('User')
+@ApiTags(API_TAG.User.name)
 @Private()
 @Controller('user')
 export class UserController {

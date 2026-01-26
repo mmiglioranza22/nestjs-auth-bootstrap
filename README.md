@@ -1,32 +1,55 @@
-![Coverage badge](https://img.shields.io/badge/coverage-92%25-blue)
-
 # NestJS Auth bootstrap template
 
-Speed up your development and your time to market with a transparent JWT authentication solution.
+Speed up your development and your time to market with a transparent and enhanced JWT authentication solution.
 
 <!-- ([Check it in action here]())  upload video-->
 
 ### Index
 
 1. [Why?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why)
-2. [Who is this for?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#who-is-this-for)
-3. [What can you do with this?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#what-can-you-do-with-this)
-4. [What's included?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#whats-included)
-5. [Why JWT?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why-jwt)
-6. [Development](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#development)
-7. [Testing](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#testing)
-8. [Auth cycle](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#auth-cycle)
-9. [A note on user roles (specific to this template)](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#a-note-on-user-roles)
+2. [Why this?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why-this)
+3. [Who is this for?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#who-is-this-for)
+4. [What can you do with this?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#what-can-you-do-with-this)
+5. [What's included?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#whats-included)
+6. [Why JWT?](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#why-jwt)
+7. [Development](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#development)
+8. [Testing](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#testing)
+9. [Auth cycle](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#auth-cycle)
+10. [A note on user roles (specific to this template)](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#a-note-on-user-roles)
 
 ## Why?
 
-This was developed during a larger project and it seemed to be a monster of its own that could be useful for anybody struggling with authentication and authorization in NestJS.
+**To save you time from the chores and setup most projects must undergo.**
 
-You can roll your own auth and develop everything from scratch (which I certainly encourage you to do), with all the time and pain that involves (which is totally worth it, yet maybe not for someone that needs an auth solution with urgency).
+Basic setup and configuration for features like authentication, authorization, forgot password/user/email, user roles, sign up, login, seeding (for fast development), containerization, CI pipelines, mailing, unit and integration testing, database setup and overall configuration (plus all the custom guards, decorators, filters, documentation) can easily stall your momentum costing you time (and money) you can't or shouldn't waste if you aim to ship as soon as possible.
 
-You can delegate authentication to battle-tested solutions with third-party packages. You trust them they do all the heavy lifting for you and taking advantage of the free plans while they last, and you are willing to spend the time it will take to understand the docs (a learning curve that not everybody wants to go through).
+Our estimate for all the above amount a total of 90+ hours saved (even more by [other estimates](https://bcboilerplates.com/)). _And we are not even counting all the debugging and manual fixing time you will spend when trying to set it up your self (Throw in an extra 24 hours if we are super positive)_
 
-Or you can try this template if you just want to see the code and be able to tinker with it without paying a dime while always having the control over your own auth flow. No subscription, no free or premium plans, just the code.
+That's _11 eight-hour working days_ plus **an extra 3 days only debugging**.
+
+**You can save all that time and spend it on developing the features your customers need**.
+
+Of course, you will spend time reading the code and making a sense out of it the first time (which really can't be measured as that depends exclusively on your available time and experience with this kind of setups). But in the end, you will have a working and tested solution you comprehend and can own.
+
+We are confident the code is clear (comments help a lot, same as tests), and in case of unsolvable doubt you can always open an issue and ask for clarifications.
+
+# Why this?
+
+There are already great solutions like the one provided by brocoders [nesjt-boilerplate](https://github.com/brocoders/nestjs-boilerplate/tree/main) (you should definitly check it out), which can feel overwhelming at first by the sheer amount of features and options you have to choose from.
+
+That is why this template keeps it simple: **you get what you see** while always **being able to change anything you need to** (See [What's included](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#whats-included))
+
+You can roll your own auth and develop everything from scratch (which I certainly encourage you to do if you are learning to use an awesome tool like NestJS), with all the time and pain that involves (which is totally worth it, yet maybe not for someone that needs an auth solution with urgency or does not want to think twice about it).
+
+You can delegate authentication to battle-tested solutions with third-party packages. You trust them to do all the heavy lifting for you and take advantage of the free plans while they last (or start paying from the start), and you are willing to spend the time it will take to understand the docs (a learning curve that not everybody wants to go through).
+
+Or you can try this template if you just want to see the code and be able to tinker with it without paying a dime while always having the control over your own auth flow.
+
+No subscription, no pricing. Just the code.
+
+#### How this came was made:
+
+This was developed during a larger project and it seemed to be a monster of its own. By removing the business specific logic for that project, we end up with something that could be useful for anybody struggling with authentication and authorization in NestJS applications.
 
 ## Who is this for?
 
@@ -84,10 +107,18 @@ License is MIT
   <br>
 - Main workflow pipeline (linting, build and tests) set and extensible for deploys.
   <br>
-- Tons of comments that explain how things work if you get lost
+- Tons of comments that explain how things work if you get lost and cite resources used (You don't get that with other templates...)
   <br>
 
-Least but most important, **the ability to modify any of the above to fit your specific needs**. That said, the template `CORS` configuration might not be the one you need **and it is up to you to configure it (just passing the options you want)**
+Least but most important, **the ability to modify any of the above to fit your specific needs**.
+
+That said, the template `CORS` configuration might not be the one you need **and it is up to you to configure it (just passing the options you want)**
+
+Here's a view of how the project is organized:
+
+```
+
+```
 
 ## Why [JWT](https://youtu.be/P2CPd9ynFLg?si=mKVvy1h3_ERcrF6W)?
 

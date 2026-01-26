@@ -532,7 +532,6 @@ describe(AuthService.name, () => {
 
       const result = service.revalidateUserTokens(cookieRefreshToken);
 
-      // * Errors get overwitten by top level method error
       await expect(async () => await result).rejects.toThrowWithMessage(
         UnauthorizedException,
         ErrorMessages.INVALID_USER_CREDENTIALS,
@@ -613,7 +612,6 @@ describe(AuthService.name, () => {
 
       const result = service.revalidateUserTokens(cookieRefreshToken);
 
-      // * Errors get overwitten by top level method error
       await expect(async () => await result).rejects.toThrowWithMessage(
         UnauthorizedException,
         ErrorMessages.INVALID_REFRESH_TOKEN,

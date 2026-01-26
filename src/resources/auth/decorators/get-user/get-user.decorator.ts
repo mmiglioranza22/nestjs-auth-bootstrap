@@ -12,7 +12,7 @@ type UserKeys = keyof Pick<User, 'id' | 'active' | 'roles'>;
 
 export const getUser = (data: UserKeys | undefined, ctx: ExecutionContext) => {
   const req = ctx.switchToHttp().getRequest<Request>();
-  const user = req.user as RequestAgent; // available thanks to JwtStrategy.validate return
+  const user = req.user as RequestAgent; // available thanks to JwtStrategy (validate) and UserRoleGuard (attachRequestAgent)
 
   // * Fallback. Should never happen since decorators is used in protected routes and JwtStrategy signs user in every request
   if (!user) {
