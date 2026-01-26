@@ -29,7 +29,7 @@ Our estimate for all the above amount a total of 90+ hours saved (even more by [
 
 That's _11 eight-hour working days_ plus **an extra 3 days only debugging**.
 
-You could also try generating all with AI and spend at least half that time (fingers crossed 🤞) just trying to understand how it designed the system and whether it actually does what you asked for.
+You could also try generating all with AI and spend at least half that time (fingers crossed 🤞) just trying to understand how it designed the system and whether it actually does what you asked for. Then, add a couple days you will spend refactoring the mess it will likely made, and then a couple more double checking all tests are actually testing what you need (Plus manual Postman testing, if you are serious about how robust you want your project to be). AI-driven solution lands in a similar estimate (10 to 14 days, give or take).
 
 **But you can save all that time and spend it on developing the features your customers need**.
 
