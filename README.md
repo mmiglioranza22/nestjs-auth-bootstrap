@@ -23,11 +23,13 @@ Speed up your development and your time to market with a transparent and enhance
 
 Basic setup and configuration for features like authentication, authorization, forgot password/user/email, user roles, sign up, login, seeding (for fast development), containerization, CI pipelines, mailing, unit and integration testing, database setup and overall configuration (plus all the custom guards, decorators, filters, documentation) can easily stall your momentum costing you time (and money) you can't or shouldn't waste if you aim to ship as soon as possible.
 
-Our estimate for all the above amount a total of 90+ hours saved (even more by [other estimates](https://bcboilerplates.com/)). _And we are not even counting all the debugging and manual fixing time you will spend when trying to set it up your self (Throw in an extra 24 hours if we are super positive)_
+Our estimate for all the above amount a total of 90+ hours saved (even more by [other estimates](https://bcboilerplates.com/)). _And we are not even counting all the debugging and manual fixing time you will spend when trying to set it up your self (Throw in an extra 24 hours if we are super confident)_
 
 That's _11 eight-hour working days_ plus **an extra 3 days only debugging**.
 
-**You can save all that time and spend it on developing the features your customers need**.
+You could also try generating all with AI and spend at least half that time (fingers crossed 🤞) just trying to understand how it designed the system and whether it actually does what you asked for.
+
+**But you can save all that time and spend it on developing the features your customers need**.
 
 Of course, you will spend time reading the code and making a sense out of it the first time (which really can't be measured as that depends exclusively on your available time and experience with this kind of setups). But in the end, you will have a working and tested solution you comprehend and can own.
 
