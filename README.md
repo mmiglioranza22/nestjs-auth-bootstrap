@@ -85,7 +85,7 @@ License is MIT
 - Tons of comments that explain how things work if you get lost
   <br>
 
-Least but most important, **the ability to modify any of the above to fit your specific needs**. That said, the template `**CORS**` configuration might not be the one you need **and it is up to you to configure it (just passing the options you want)**
+Least but most important, **the ability to modify any of the above to fit your specific needs**. That said, the template `CORS` configuration might not be the one you need **and it is up to you to configure it (just passing the options you want)**
 
 ## Why [JWT](https://youtu.be/P2CPd9ynFLg?si=mKVvy1h3_ERcrF6W)?
 
