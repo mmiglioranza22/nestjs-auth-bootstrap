@@ -82,6 +82,8 @@ License is MIT
   <br>
 - **Seed service** for fast development setup anc checking out how it works (best use with provided Postman collection)
   <br>
+- Main workflow pipeline (linting, build and tests) set and extensible for deploys.
+  <br>
 - Tons of comments that explain how things work if you get lost
   <br>
 
