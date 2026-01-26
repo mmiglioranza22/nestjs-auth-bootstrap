@@ -33,6 +33,7 @@ import {
 } from '../constants/error-messages';
 import { type EnvVariables } from 'config/env-variables';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const existingDbEntities = [Role.name];
 
 @Catch()

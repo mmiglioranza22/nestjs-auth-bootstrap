@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { createMock } from '@golevelup/ts-vitest';
 import { CsrfGuard } from './csrf.guard';
 import { CsrfTokenService } from '../../modules/csrf-token/csrf-token.service';

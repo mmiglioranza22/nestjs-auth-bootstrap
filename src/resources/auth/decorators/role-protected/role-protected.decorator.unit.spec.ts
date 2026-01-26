@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { UserRole } from 'src/resources/auth/modules/role/enum/user-role.enum';
 import { META_ROLES, RoleProtected } from './role-protected.decorator';
 import { SetMetadata } from '@nestjs/common';

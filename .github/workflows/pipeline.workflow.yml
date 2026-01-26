@@ -1,4 +1,4 @@
-name: Code coverage tests
+name: Main pipeline (lint, build, test)
 
 on:
   push:
@@ -9,7 +9,28 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  lint_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10 #
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm run lint
+
   build_job:
+    needs: lint_job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -55,18 +76,3 @@ jobs:
 
       - name: Run integration tests
         run: pnpm run test:int
-
-  # coverage_job:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ github.event.pull_request.merge_commit_sha }}
-  #         fetch-depth: "0"
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: lts/*
-  #     - name: Install dependencies
-  #       run: npm ci && npm run build
-  #     - name: Test coverage
-  #       run: npm run test:cov
