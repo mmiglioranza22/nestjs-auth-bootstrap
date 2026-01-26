@@ -13,9 +13,9 @@ import { SeedModule } from '../../src/_seed/seed.module';
 import { AuthModule } from '../../src/resources/auth/auth.module';
 import { CacheModule } from '../../src/infra/cache/cache.module';
 import {
-  TestContainersSetup,
   type Containers,
-} from '../helpers/testcontainers.setup';
+  TestContainersSetup,
+} from 'test/helpers/testcontainers.setup';
 
 describe(AppModule.name, () => {
   let moduleRef: TestingModule;
