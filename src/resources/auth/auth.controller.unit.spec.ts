@@ -19,7 +19,11 @@ import { UserIdDTO } from './dto/user-id.dto';
 import { CacheService } from 'src/infra/cache/cache.service';
 import { CsrfTokenService } from './modules/csrf-token/csrf-token.service';
 import { VerifyAccountDTO } from './dto/verify-account.dto';
-import { AUTH_COOKIE_PATH, CSRF_COOKIE, CSRF_COOKIE_PATH } from './constants';
+import {
+  AUTH_COOKIE_PATH,
+  CSRF_COOKIE_HEADER,
+  CSRF_COOKIE_PATH,
+} from './constants';
 
 describe(AuthController.name, () => {
   let controller: AuthController;
@@ -160,7 +164,7 @@ describe(AuthController.name, () => {
         );
         expect(mockResponse.cookie).toHaveBeenNthCalledWith(
           2,
-          CSRF_COOKIE,
+          CSRF_COOKIE_HEADER,
           expect.any(String),
           {
             sameSite: 'strict',
@@ -216,7 +220,7 @@ describe(AuthController.name, () => {
         );
         expect(mockResponse.cookie).toHaveBeenNthCalledWith(
           2,
-          CSRF_COOKIE,
+          CSRF_COOKIE_HEADER,
           expect.any(String),
           {
             sameSite: 'strict',
@@ -259,7 +263,7 @@ describe(AuthController.name, () => {
         );
         expect(mockResponse.clearCookie).toHaveBeenNthCalledWith(
           2,
-          CSRF_COOKIE,
+          CSRF_COOKIE_HEADER,
           { path: CSRF_COOKIE_PATH },
         );
       });
@@ -297,7 +301,7 @@ describe(AuthController.name, () => {
         );
         expect(mockResponse.clearCookie).toHaveBeenNthCalledWith(
           2,
-          CSRF_COOKIE,
+          CSRF_COOKIE_HEADER,
           { path: CSRF_COOKIE_PATH },
         );
       });
@@ -337,7 +341,7 @@ describe(AuthController.name, () => {
         );
         expect(mockResponse.clearCookie).toHaveBeenNthCalledWith(
           2,
-          CSRF_COOKIE,
+          CSRF_COOKIE_HEADER,
           {
             path: CSRF_COOKIE_PATH,
           },

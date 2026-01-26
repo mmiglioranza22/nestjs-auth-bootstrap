@@ -1,5 +1,5 @@
-import { AUTHENTICATION_COOKIE } from '../constants';
+import { AUTHENTICATION_COOKIE_HEADER } from '../constants';
 
 export interface SignedCookies {
-  [AUTHENTICATION_COOKIE]: string;
+  [AUTHENTICATION_COOKIE_HEADER]: string;
 }

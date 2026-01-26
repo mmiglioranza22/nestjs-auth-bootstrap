@@ -24,7 +24,7 @@ import { UserModule } from './resources/user/user.module';
 import { AuthModule } from './resources/auth/auth.module';
 import { API_TAG } from './swagger/constants';
 import { SeedModule } from './_seed/seed.module';
-import { AUTHENTICATION_COOKIE } from './resources/auth/constants';
+import { AUTHENTICATION_COOKIE_HEADER } from './resources/auth/constants';
 
 const isNotProd = process.env.NODE_ENV !== 'production';
 
@@ -60,7 +60,7 @@ export async function bootstrap() {
     )
     .setVersion('1.0')
     .addBearerAuth(undefined, 'accessToken')
-    .addCookieAuth(AUTHENTICATION_COOKIE)
+    .addCookieAuth(AUTHENTICATION_COOKIE_HEADER)
     .addTag(API_TAG.Auth.name, API_TAG.Auth.description)
     .addTag(API_TAG.User.name, API_TAG.User.name)
     .build();

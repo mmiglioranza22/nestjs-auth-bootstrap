@@ -3,7 +3,7 @@ import { CsrfGuard } from './csrf.guard';
 import { CsrfTokenService } from '../../modules/csrf-token/csrf-token.service';
 import { Request } from 'express';
 import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
-import { CSRF_COOKIE, CSRF_CUSTOM_HEADER } from '../../constants';
+import { CSRF_COOKIE_HEADER, CSRF_CUSTOM_HEADER } from '../../constants';
 import {
   CSRF_TOKEN_INVALID,
   CSRF_TOKEN_MISMATCH,
@@ -37,7 +37,7 @@ describe(CsrfGuard.name, () => {
         [`${CSRF_CUSTOM_HEADER}`]: sameToken,
       },
       cookies: {
-        [`${CSRF_COOKIE}`]: sameToken,
+        [`${CSRF_COOKIE_HEADER}`]: sameToken,
       },
     });
 
@@ -62,7 +62,7 @@ describe(CsrfGuard.name, () => {
     });
     const mockResquestWithoutHeaders = createMock<Request>({
       cookies: {
-        [`${CSRF_COOKIE}`]: csrfToken,
+        [`${CSRF_COOKIE_HEADER}`]: csrfToken,
       },
       headers: {},
     });
@@ -93,7 +93,7 @@ describe(CsrfGuard.name, () => {
         [`${CSRF_CUSTOM_HEADER}`]: 'token1',
       },
       cookies: {
-        [`${CSRF_COOKIE}`]: 'token2',
+        [`${CSRF_COOKIE_HEADER}`]: 'token2',
       },
     });
 
@@ -116,7 +116,7 @@ describe(CsrfGuard.name, () => {
         [`${CSRF_CUSTOM_HEADER}`]: sameToken,
       },
       cookies: {
-        [`${CSRF_COOKIE}`]: sameToken,
+        [`${CSRF_COOKIE_HEADER}`]: sameToken,
       },
     });
 

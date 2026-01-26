@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci') {
   throw Error(
     'Function only intended to work in testing and CI/CD environment',
@@ -5,14 +6,12 @@ if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci') {
 }
 
 import {
-  AUTHENTICATION_COOKIE,
-  CSRF_COOKIE,
+  AUTHENTICATION_COOKIE_HEADER,
+  CSRF_COOKIE_HEADER,
   CSRF_CUSTOM_HEADER,
 } from 'src/resources/auth/constants';
 import { Response, Test } from 'supertest';
 
-// * Can only be invoked in testing environment
-// TODO TEST pending
 export const withPrivateResourceCredentials = (
   loginResponse: Response,
   client: Test,
@@ -22,7 +21,6 @@ export const withPrivateResourceCredentials = (
   return client.auth(accessToken, { type: 'bearer' });
 };
 
-// TODO TEST pending
 export const withProtectedResourceCredentials = (
   loginResponse: Response,
   client: Test,
@@ -32,10 +30,9 @@ export const withProtectedResourceCredentials = (
   return client
     .auth(accessToken, { type: 'bearer' })
     .set(CSRF_CUSTOM_HEADER, csrfToken)
-    .set('Cookie', [`${CSRF_COOKIE}=${csrfToken}`]);
+    .set('Cookie', [`${CSRF_COOKIE_HEADER}=${csrfToken}`]);
 };
 
-// TODO TEST pending
 export const withAllCredentials = (
   loginResponse: Response,
   client: Test,
@@ -47,31 +44,28 @@ export const withAllCredentials = (
     .auth(accessToken, { type: 'bearer' })
     .set(CSRF_CUSTOM_HEADER, csrfToken)
     .set('Cookie', [
-      `${CSRF_COOKIE}=${csrfToken}`,
-      `${AUTHENTICATION_COOKIE}=${refreshToken}`,
+      `${CSRF_COOKIE_HEADER}=${csrfToken}`,
+      `${AUTHENTICATION_COOKIE_HEADER}=${refreshToken}`,
     ]);
 };
 
-// TODO TEST pending
 export const getResponseCookies = (
   loginResponse: Response,
 ): { accessToken: string; csrfToken: string; refreshToken: string } => {
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     body: { accessToken },
     headers,
   } = loginResponse;
 
   const csrfToken = (headers['set-cookie'] as unknown as string[])
-    .find((cookieString) => cookieString.includes(CSRF_COOKIE))
+    .find((cookieString) => cookieString.includes(CSRF_COOKIE_HEADER))
     ?.split('=')[1]
     .split(';')[0] as string;
 
   const refreshToken = (headers['set-cookie'] as unknown as string[])
-    .find((cookieString) => cookieString.includes(AUTHENTICATION_COOKIE))
+    .find((cookieString) => cookieString.includes(AUTHENTICATION_COOKIE_HEADER))
     ?.split('=')[1]
     .split(';')[0] as string;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return { accessToken, csrfToken, refreshToken };
 };

@@ -152,7 +152,7 @@ export class AuthController {
   }
 
   private setAuthCookie(refreshToken: string, response: Response): void {
-    response.cookie(Constants.AUTHENTICATION_COOKIE, refreshToken, {
+    response.cookie(Constants.AUTHENTICATION_COOKIE_HEADER, refreshToken, {
       sameSite: 'strict',
       httpOnly: true,
       secure: true,
@@ -164,7 +164,7 @@ export class AuthController {
 
   private setCsrfCookie(response: Response): void {
     response.cookie(
-      Constants.CSRF_COOKIE,
+      Constants.CSRF_COOKIE_HEADER,
       this.csrfTokenService.generateCsrfToken(),
       {
         sameSite: 'strict',
@@ -179,10 +179,10 @@ export class AuthController {
   // https://stackoverflow.com/questions/68332147/i-can-still-edit-cookie-even-with-httponly-using-cookie-editor
   // Always clear cookies on logout
   private clearAllCookies(response: Response): void {
-    response.clearCookie(Constants.AUTHENTICATION_COOKIE, {
+    response.clearCookie(Constants.AUTHENTICATION_COOKIE_HEADER, {
       path: Constants.AUTH_COOKIE_PATH,
     });
-    response.clearCookie(Constants.CSRF_COOKIE, {
+    response.clearCookie(Constants.CSRF_COOKIE_HEADER, {
       path: Constants.CSRF_COOKIE_PATH,
     });
   }
