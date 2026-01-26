@@ -26,7 +26,7 @@ import { TAG } from './swagger/constants';
 import { SeedModule } from './_seed/seed.module';
 import { AUTHENTICATION_COOKIE } from './resources/auth/constants';
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isNotProd = process.env.NODE_ENV !== 'production';
 
 export async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -39,7 +39,7 @@ export async function bootstrap() {
   app.use(helmet());
 
   app.enableCors({
-    origin: isDev ? true : 'https://app.example.com',
+    origin: isNotProd ? true : 'https://app.example.com',
   });
   app.useBodyParser('json', { limit: '10mb' });
 

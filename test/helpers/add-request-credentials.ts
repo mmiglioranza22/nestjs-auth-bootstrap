@@ -1,5 +1,7 @@
-if (process.env.NODE_ENV !== 'test') {
-  throw Error('Function only intended to work in testing environment');
+if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci') {
+  throw Error(
+    'Function only intended to work in testing and CI/CD environment',
+  );
 }
 
 import {

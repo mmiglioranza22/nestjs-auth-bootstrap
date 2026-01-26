@@ -45,13 +45,20 @@ export class GlobalExceptionsFilter extends BaseExceptionFilter {
     this.logger.setContext(GlobalExceptionsFilter.name);
   }
 
+  private get allowLogs() {
+    return (
+      this.configService.get('NODE_ENV') !== 'production' &&
+      this.configService.get('NODE_ENV') !== 'ci'
+    );
+  }
+
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest<Request>();
     const response = ctx.getResponse<Response>();
 
     // ! Change to !== 'production' to check error logs in integration tests
-    if (this.configService.get('NODE_ENV') === 'development') {
+    if (this.allowLogs) {
       this.logger.debug({
         method: request.method,
         path: request.url,
