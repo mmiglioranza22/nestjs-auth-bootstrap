@@ -1,3 +1,5 @@
+![Coverage badge](https://img.shields.io/badge/coverage-92%25-blue)
+
 # NestJS Auth bootstrap template
 
 Speed up your development and your time to market with a transparent and enhanced JWT authentication solution.
