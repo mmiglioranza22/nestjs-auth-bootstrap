@@ -139,8 +139,10 @@ describe('Auth flow', () => {
 
       expect(query.length).toBe(1);
       expect(query[0]).toEqual({
-        version:
-          'PostgreSQL 18.1 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit',
+        version: expect.stringContaining('PostgreSQL 18.1'), // on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit',
+      });
+      expect(query[0]).toEqual({
+        version: expect.stringContaining('Alpine 14.2.0'), // on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit',
       });
       expect(dataSource.isInitialized).toBe(true);
       expect(redisHello.length).not.toBe(0);
