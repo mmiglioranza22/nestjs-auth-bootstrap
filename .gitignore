@@ -1,5 +1,4 @@
 # Dependencies
-pnpm-lock.yaml
 package-lock.json
 # compiled output
 /dist
