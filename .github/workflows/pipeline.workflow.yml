@@ -38,6 +38,7 @@ jobs:
       NODE_ENV: ci # Silence error logs, remove or set to test to see logs in CI/CD pipeline
       LOG_LEVEL: silent # Silence request logs in integration tests
       DB_RETRY_ATTEMPTS: 5
+      DB_RETRY_DELAY: 5000
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
