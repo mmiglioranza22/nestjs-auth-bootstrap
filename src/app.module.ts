@@ -27,6 +27,9 @@ const CONFIG_MODULE_OPTIONS: Record<string, ConfigModuleOptions> = {
   test: {
     envFilePath: './config/.env.test',
   },
+  ci: {
+    envFilePath: './config/.env.test',
+  },
 };
 
 @Module({
