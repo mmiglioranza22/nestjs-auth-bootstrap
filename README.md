@@ -65,18 +65,21 @@ This was developed during a larger project and it seemed to be a monster of its 
 
 4. _Security is paramaount to your application and you need a scalable and performant solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature._
 
-5. _Your application uses REST (you could adapt it to your need, but know quite a lot of refactor could be needed)_
+5. _Your application uses REST (you could adapt it to your need, but know quite a lot of refactor could be needed)._
+
+6. _You are need to develop a frontend for an authentication flow and need a backend ready with clear API endpoints._
 
 ## What can you do with this?
 
 Whatever you want.
 
-You can use it as is, developr your own authentication strategy to your use case, extend it and implement your own token reuse detection solution (to enable multiple device login for example or blacklist used access token), remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, play around trying to crack it and find vulnerabilities unknown until now (you can submit them if you do!)
+You can use it as is, develop your own authentication strategy to your use case, extend it and implement your own token reuse detection solution (to enable multiple device login for example or blacklist used access token), remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, use it as a backend authentication server solution so you can integrate your frontend project, play around trying to crack it and find vulnerabilities unknown until now _(you can submit them if you do!)_
 
 License is MIT
 
 ## What's included?
 
+- Nest application configured for fast builds and testing (`swc`).
 - Basic `User` and `Role` entities (**TypeORM** implementation)
   <br>
 - **JWT** based authentication strategy implemented:
@@ -121,6 +124,34 @@ That said, the template `CORS` configuration might not be the one you need **and
 Here's a view of how the project is organized:
 
 ```
+- config (env files)
+- src
+  |_ app.module.ts
+  |_ main.ts
+  |_ /seed
+  |_ /common
+  |  |_ /constants
+  |  |_ /decorators
+  |  |_ /dtos
+  |  |_ /filters
+  |
+  |_ /infra
+  |  |_ /cache
+  |  |_ /database
+  |  |_ /logging
+  |  |_ /mail
+  |
+  |_ /resources
+  |  |_ /auth
+  |  |_ /shared
+  |  |_ /user
+  |
+  |_ /swagger
+  |_ /utils
+  |_ /test
+  |  |_ /helpers
+  |  |_ /integration
+
 
 ```
 
