@@ -129,33 +129,33 @@ That said, the template `CORS` configuration might not be the one you need **and
 Here's a view of how the project is organized:
 
 ```
-- config (env files)
-- src
-  |_ app.module.ts
-  |_ main.ts
-  |_ /seed
-  |_ /common
-  |  |_ /constants
-  |  |_ /decorators
-  |  |_ /dtos
-  |  |_ /filters
-  |
-  |_ /infra
-  |  |_ /cache
-  |  |_ /database
-  |  |_ /logging
-  |  |_ /mail
-  |
-  |_ /resources
-  |  |_ /auth
-  |  |_ /shared
-  |  |_ /user
-  |
-  |_ /swagger
-  |_ /utils
-  |_ /test
-  |  |_ /helpers
-  |  |_ /integration
+- /config (env files)
+- /src
+   |_ app.module.ts
+   |_ main.ts
+   |_ /seed
+   |_ /common
+   |   |_ /constants
+   |   |_ /decorators
+   |   |_ /dtos
+   |   |_ /filters
+   |
+   |_ /infra
+   |   |_ /cache
+   |   |_ /database
+   |   |_ /logging
+   |   |_ /mail
+   |
+   |_ /resources
+   |   |_ /auth
+   |   |_ /shared
+   |   |_ /user
+   |
+   |_ /swagger
+   |_ /utils
+- /test
+   |   |_ /helpers
+   |   |_ /integration
 
 
 ```
