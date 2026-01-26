@@ -14,8 +14,8 @@ import { AuthModule } from '../../src/resources/auth/auth.module';
 import { CacheModule } from '../../src/infra/cache/cache.module';
 import {
   TestContainersSetup,
-  Containers,
-} from '../../src/test-helpers/testcontainers.setup';
+  type Containers,
+} from '../helpers/testcontainers.setup';
 
 describe(AppModule.name, () => {
   let moduleRef: TestingModule;

@@ -9,9 +9,9 @@ import { AppModule } from 'src/app.module';
 import TestAgent from 'supertest/lib/agent';
 import { DataSource } from 'typeorm';
 import {
-  type Containers,
   TestContainersSetup,
-} from 'src/test-helpers/testcontainers.setup';
+  Containers,
+} from '../helpers/testcontainers.setup';
 import Redis from 'ioredis';
 import { REDIS_CLIENT } from 'src/infra/cache/redis.factory';
 import { SignUpUserDTO } from 'src/resources/auth/dto/signup-user.dto';
@@ -28,7 +28,7 @@ import {
   withAllCredentials,
   withPrivateResourceCredentials,
   withProtectedResourceCredentials,
-} from 'src/test-helpers/add-request-credentials';
+} from '../helpers/add-request-credentials';
 import { Role } from 'src/resources/auth/modules/role/entities/role.entity';
 import { OtpAuthenticationService } from 'src/resources/auth/modules/otp/otp-authentication.service';
 import { CreateUserDTO } from 'src/resources/user/dto/create-user.dto';
@@ -38,6 +38,9 @@ import { LoginSlugDTO } from 'src/resources/auth/dto/login-slug.dto';
 import { RecoveryToken } from 'src/resources/auth/modules/recovery-token/entities/recover-credentials-token.entity';
 import { ResetPasswordDTO } from 'src/resources/auth/dto/reset-password.dto';
 import { CacheService, CacheTokenValue } from 'src/infra/cache/cache.service';
+import { _getCurrentNodeEnv } from '../helpers/ci-cd-env';
+
+const previousNodeEnv = _getCurrentNodeEnv();
 
 describe('Auth flow', () => {
   let app: INestApplication<App>;
@@ -106,7 +109,7 @@ describe('Auth flow', () => {
 
     apiClient = supertest(app.getHttpServer());
 
-    process.env.NODE_ENV = 'test'; // required since some test need production environment
+    process.env.NODE_ENV = previousNodeEnv; // required since some test need production environment
     await apiClient.get('/api/seed');
   });
 

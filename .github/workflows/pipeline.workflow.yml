@@ -1,0 +1,100 @@
+name: Code coverage tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10 #
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      # - name: Upload Build Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build-artifact
+      #     path: dist/ # Adjust to your build output directory
+
+  test_job:
+    needs: build_job
+    env:
+      NODE_ENV: ci # Silence error logs, remove or set to test to see logs in CI/CD pipeline
+      LOG_LEVEL: silent # Silence request logs in integration tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: "0"
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run unit tests
+        run: pnpm run test:unit
+
+      - name: Run integration tests
+        run: pnpm run test:int
+
+  # coverage_job:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ github.event.pull_request.merge_commit_sha }}
+  #         fetch-depth: "0"
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: lts/*
+  #     - name: Install dependencies
+  #       run: npm ci && npm run build
+  #     - name: Test coverage
+  #       run: npm run test:cov
+
+  # Most useful for deploys
+  #  - name: Download Build Artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: build-artifact
+  #         path: dist/ # Download to the same path
+
+  #
+  # check_skip_job:
+  #   runs-on:
+  #     ubuntu-20.04
+  #     # Map a step output to a job output
+  #   outputs:
+  #     output1: ${{ steps.checkSkip.outputs.shouldSkip }}
+  #   steps:
+  #     - name: "check for #skip in commit"
+  #       id: checkSkip
+  #       env:
+  #         COMMITS: ${{ toJson(github.event.commits) }}
+  #         SKIP_WORKFLOW: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
+  #       run: echo "shouldSkip=$SKIP_WORKFLOW" >> "$GITHUB_OUTPUT"

@@ -15,10 +15,13 @@ import { RecoveryToken } from 'src/resources/auth/modules/recovery-token/entitie
 import { UserRole } from 'src/resources/auth/modules/role/enum/user-role.enum';
 
 import {
-  type Containers,
   TestContainersSetup,
-} from 'src/test-helpers/testcontainers.setup';
+  type Containers,
+} from '../helpers/testcontainers.setup';
 import { REDIS_CLIENT } from 'src/infra/cache/redis.factory';
+import { _getCurrentNodeEnv } from '../helpers/ci-cd-env';
+
+const previousNodeEnv = _getCurrentNodeEnv();
 
 // * Note: test only for first release (makes sense for development purposes)
 // Actual seed would use sql migration. Test only helps assess if startup is correctly wired up
@@ -51,7 +54,7 @@ describe('Seed flow', () => {
     );
 
     await app.init();
-    process.env.NODE_ENV = 'test'; // required since some test need production environment
+    process.env.NODE_ENV = previousNodeEnv; // required since some test need production environment
     dataSource = app.get<DataSource>(DataSource);
     redisClient = app.get<Redis>(REDIS_CLIENT);
     apiClient = supertest(app.getHttpServer());
@@ -92,7 +95,7 @@ describe('Seed flow', () => {
 
   // * Required for tests that modify env variable
   beforeEach(() => {
-    process.env.NODE_ENV = 'test';
+    process.env.NODE_ENV = previousNodeEnv;
   });
 
   describe('Expected api call response:', () => {
