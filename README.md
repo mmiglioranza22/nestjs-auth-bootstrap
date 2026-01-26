@@ -25,21 +25,25 @@ Speed up your development and your time to market with a transparent and enhance
 
 Basic setup and configuration for features like authentication, authorization, forgot password/user/email, user roles, sign up, login, seeding (for fast development), containerization, CI pipelines, mailing, unit and integration testing, database setup and overall configuration (plus all the custom guards, decorators, filters, documentation) can easily stall your momentum costing you time (and money) you can't or shouldn't waste if you aim to ship as soon as possible.
 
-Our estimate for all the above amount a total of 90+ hours saved (even more by [other estimates](https://bcboilerplates.com/)). _And we are not even counting all the debugging and manual fixing time you will spend when trying to set it up your self (Throw in an extra 24 hours if we are super confident)_
+Our estimate for all the above amount a total of 90+ hours saved (even more by [other estimates](https://bcboilerplates.com/)). _And we are not even counting all the debugging and manual fixing time you would likely spend while trying to set it up yourself (Throw in an extra 24 hours if you are super confident)_
 
-That's _11 eight-hour working days_ plus **an extra 3 days only debugging**.
+<br>
 
-You could also try generating all with AI and spend at least half that time (fingers crossed 🤞) just trying to understand how it designed the system and whether it actually does what you asked for. Then, add a couple days you will spend refactoring the mess it will likely made, and then a couple more double checking all tests are actually testing what you need (Plus manual Postman testing, if you are serious about how robust you want your project to be). AI-driven solution lands in a similar estimate (10 to 14 days, give or take).
+\*\*\*\*\* _That's **11 days** plus **an extra 3 days only debugging**._ _(assuming an 8-hour work day)_ \*\*\*\*\*
+
+<br>
+
+You could also try generating all with AI and spend at least half that time (fingers crossed 🤞) just trying to understand how the model designed the system and whether it actually does what you asked for. Then add a couple more days you will certainly spend **refactoring** the mess it will likely made. Top it all with a couple more days spent double checking that all tests are actually testing what you need (Plus manual Postman testing, if you are serious about how robust you want your project to be). AI-driven solution lands in a similar time estimate: **10 to 14 days**, give or take 1 day.
 
 **But you can save all that time and spend it on developing the features your customers need**.
 
-Of course, you will spend time reading the code and making a sense out of it the first time (which really can't be measured as that depends exclusively on your available time and experience with this kind of setups). But in the end, you will have a working and tested solution you comprehend and can own.
+Of course, you will spend time reading the code and making a sense out of it the first time (which really can't be measured as that depends exclusively on your available time and experience with this kind of setups). But in the end, you will have a working and tested solution you **comprehend** and **own**.
 
-We are confident the code is clear (comments help a lot, same as tests), and in case of unsolvable doubt you can always open an issue and ask for clarifications.
+We are confident the code is clear (comments help a lot, same as tests) and in case of unsolvable doubt you can always open an issue asking for clarifications. We are glad to help!
 
 # Why this?
 
-There are already great solutions like the one provided by brocoders [nesjt-boilerplate](https://github.com/brocoders/nestjs-boilerplate/tree/main) (you should definitly check it out), which can feel overwhelming at first by the sheer amount of features and options you have to choose from.
+There are already great solutions like the one provided by brocoders [nesjt-boilerplate](https://github.com/brocoders/nestjs-boilerplate/tree/main) (you should definitly check it out) which can feel overwhelming at first by the sheer amount of features and options you have to choose from.
 
 That is why this template keeps it simple: **you get what you see** while always **being able to change anything you need to** (See [What's included](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/blob/main/README.md#whats-included))
 
@@ -51,42 +55,43 @@ Or you can try this template if you just want to see the code and be able to tin
 
 No subscription, no pricing. Just the code.
 
-#### How this came was made:
+#### How this came to be:
 
-This was developed during a larger project and it seemed to be a monster of its own. By removing the business specific logic for that project, we end up with something that could be useful for anybody struggling with authentication and authorization in NestJS applications.
+This was developed during a larger project and it seemed to be a monster of its own. By removing the business specific logic from that project, we end up with something we thought could be useful for anybody struggling with authentication and authorization in NestJS applications, or just wanted something that works out of the box.
 
 ## Who is this for?
 
-1. _You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication, you don't have a clue how to do so or you don't have a preferred solution to that problem, might as well try one already implemented and tested._
+1. You are developing a backend application with NestJS for any kind of project. You finally need to manage authorization and authentication, you don't have a clue how to do so or you don't have a preferred solution to that problem, might as well try one already implemented and tested.
 
-2. _You just want something to work out of the box and don't mind adjusting some configs ([explained below](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/tree/main?tab=readme-ov-file#requirements)). You also want the freedom to expand and discard what you don't need for your particular project. (You can use this as a skeleton for your custom authentication strategy: sessions, api keys, choose your pick)._
+2. You just want something to work out of the box and don't mind adjusting some configs ([explained below](https://github.com/mmiglioranza22/nestjs-auth-bootstrap/tree/main?tab=readme-ov-file#requirements)). You also want the freedom to expand what's usefull and discard what you don't need for your particular project. You will use this as a skeleton for your custom authentication strategy: sessions, api keys, choose your pick.
 
-3. _You want a solution you can test fast and ship faster without third-party solutions. You want to keep control over everything (token cache store, user roles, credentials recovery, account verification, etc) while still being able to customize it to your needs._
+3. You want a solution you can test fast and ship faster without third-party solutions. You want to keep control over everything (token cache store, user roles, credentials recovery, account verification, etc) while still being able to customize it to your needs.
 
-4. _Security is paramaount to your application and you need a scalable and performant solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature._
+4. Security is paramount to your application and you need a scalable and performant solution that will not become a bottleneck in the future. You likely work with more than one application in your system, or you know for a fact that the system you are or will be developing is of a distributed nature.
 
-5. _Your application uses REST (you could adapt it to your need, but know quite a lot of refactor could be needed)._
+5. Your application uses REST _(you could adapt it to your need, but know quite a lot of refactor will be needed)_.
 
-6. _You are need to develop a frontend for an authentication flow and need a backend ready with clear API endpoints._
+6. You are developing a frontend for an authentication flow and need a backend ready with clear API endpoints.
 
 ## What can you do with this?
 
 Whatever you want.
 
-You can use it as is, develop your own authentication strategy to your use case, extend it and implement your own token reuse detection solution (to enable multiple device login for example or blacklist used access token), remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, use it as a backend authentication server solution so you can integrate your frontend project, play around trying to crack it and find vulnerabilities unknown until now _(you can submit them if you do!)_
+You can use it as is, develop your own authentication strategy and replace the one provided, extend it and implement your own token reuse detection solution (to enable multiple device login for example or blacklist used access token), remove any module you do not use and modify what you need, check how tests are setup and configured for NestJS (not a particularly trivial endeavour), add observability and monitoring to see how it scales, convert it into your own auth micro service, use it as a backend authentication server solution so you can integrate your frontend project, play around trying to crack it and find vulnerabilities unknown until now _(you can submit them if you find one!)_
 
 License is MIT
 
 ## What's included?
 
 - Nest application configured for fast builds and testing (`swc`).
+  <br>
 - Basic `User` and `Role` entities (**TypeORM** implementation)
   <br>
 - **JWT** based authentication strategy implemented:
   <br>
-  - `accessToken` in response body for client manipulation.
+  - `accessToken` in response body for client manipulation
     <br>
-  - `Authorization` cookie with refresh token (`HttpOnly`, `SameSite`, `Secure`, `Signed`).
+  - `Authorization` cookie with refresh token (`HttpOnly`, `SameSite`, `Secure`, `Signed`)
     <br>
 - Signed Double [CSRF](https://github.com/pillarjs/understanding-csrf) Cookie pattern implementation:
   <br>
@@ -98,9 +103,9 @@ License is MIT
   <br>
 - Unit and integration testing (Vitest + [Testcontainers](https://testcontainers.com/)). (Optional docker compose tests too if you don't want to use Testcontainers)
   <br>
-- Basic mail service (**`nodemailer`** solution. You can configure it or change it completely for a different provider)
+- Basic mail service (`nodemailer` solution with `mailtrap`. You can configure it or change it completely for a different provider)
   <br>
-- Swagger docs (`api/swagger`)
+- Swagger docs (`/api/swagger`)
   <br>
 - Basic **`Throttler`** module (mainly useful for production environment. Configure it for your use case)
   <br>
@@ -112,9 +117,9 @@ License is MIT
   <br>
 - **Seed service** for fast development setup anc checking out how it works (best use with provided Postman collection)
   <br>
-- Main workflow pipeline (linting, build and tests) set and extensible for deploys.
+- Main workflow pipeline for Github Actions (linting, build and tests), extensible for deploys.
   <br>
-- Tons of comments that explain how things work if you get lost and cite resources used (You don't get that with other templates...)
+- Tons of comments that explain how things work if you get lost and cite resources used for developed implementations and solutions (You don't get that with other templates...)
   <br>
 
 Least but most important, **the ability to modify any of the above to fit your specific needs**.
@@ -201,9 +206,9 @@ Each project handles authorization differently (this template uses **role based*
 
 4. _**Still JWT are not safe against CSRF threats, they are useless against them!**_:
 
-These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is usless for the purpose of hammering nails: it is just not the tool for that.
+These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is useless for the purpose of hammering nails: it is just not the tool for that.
 
-CSRF threats are addressed by CSRF specific solutions, which this template conveniently has by implementing the signed double submit CSRF pattern. This implementation was developed with AI and tested for common pitfalls (timing attacks for different token lengths) and is transparent for you to check it out, enhance or modify it completely. You can check how it was developed [here](https://github.com/mmiglioranza22/chatgptools/blob/fcaff05045a8751c65779681496577279be8bfc0/csrf_utils/README.md)
+CSRF threats are addressed by CSRF specific solutions, which this template conveniently has by implementing the signed double submit CSRF pattern. This implementation was developed with AI and tested for common pitfalls (timing attacks for different token lengths) and is transparent for you to check it out, enhance or modify it completely. You can check how it was developed [here](https://github.com/mmiglioranza22/chatgptools/blob/fcaff05045a8751c65779681496577279be8bfc0/csrf_utils/README.md).
 
 Not satisfied with the provided CSRF solution? You can reuse most components and implement [`csrf-csrf`](https://github.com/Psifi-Solutions/csrf-csrf) yourself
 
@@ -214,7 +219,7 @@ Not satisfied with the provided CSRF solution? You can reuse most components and
 #### Requirements
 
 - Docker (4.57.0)
-- Node (24.13.0)
+- Node (22, 24.13.0)
 - Volta (optional)
 
 After cloning the repository, you should create an `.env.development` file with your own variables using the template provided in the `/config` directory (env file must be located in that directory unless you modify how you want docker compose to look for it)
@@ -241,14 +246,14 @@ Hit `/api/seed` to populate and initialize entities. If response is `{ ok: true 
 
 #### Mail service configuration
 
-If you wish to use the implemented **nodemailer** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`.
+If you wish to use the implemented **mailtrap** solution, you must create your own account and configure environment variables `MAILTRAP_HOST, MAILTRAP_PORT, MAILTRAP_USER, MAILTRAP_PASSWORD`.
 Refer to [mailtrap.io](https://mailtrap.io/) docs to set up your own configuration (sandbox tab)
 
 <br>
 
 #### Troubleshooting - Notice on first time running `postgres` containers
 
-Postgres demands `POSTGRES_PASSWORD` variable to be set on the first time docker compose runs. Although this is done by TypeORM when initializing the application, the password variable at the time the container starts up is not available (It then reads the variable from the `.env.development` file).
+Postgres demands `POSTGRES_PASSWORD` variable to be set on the first time docker compose runs. Although this is done by TypeORM when initializing the application, the password variable at the time the container starts up is not available (It then readsF the variable from the `.env.development` file).
 
 Docker needs to read these variables from an `.env` file on startup.
 
@@ -397,10 +402,12 @@ I will be adding a list of all the resources I used here. This project was made 
 - [WittCode Security playlist](https://www.youtube.com/watch?v=PbzvureDBJw&list=PLkqiWyX-_Losd0Qc584EcU2A1aHvF7Snc), in particular videos related to JWT access and refresh tokens, CSRF.
 - [WebDevSimplified video on CSRF tokens](https://youtu.be/80S8h5hEwTY?si=18kkrUlcDakpKm_f)
 
-#### Found anything useful? Gift a star! Share the repository
+##
 
-#### Want to contribute? Make a fork and submit your suggestions _(keep changes small (100-200 lines per PR))_
+Found anything useful? Gift a star! Share the repository
 
-#### Still want to contribute with ideas or observations you made on the code? Open an issue _(keep it as short as possible)_
+Want to contribute? Make a fork and submit your suggestions: _keep changes small (100-200 lines per PR)_
+
+Still want to contribute with ideas or observations you made on the code? Open an issue _(keep it as short as possible)_
 
 #### Any AI generated PRs / issues will be discarded at once if no follow up is provided.
