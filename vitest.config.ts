@@ -17,16 +17,19 @@ export default defineConfig({
         test: {
           name: 'unit',
           include: ['**/*.unit.spec.ts'],
+          fileParallelism: true,
+          sequence: { concurrent: true, groupOrder: 1 },
         },
       },
       {
         extends: true,
         test: {
-          sequence: { concurrent: false },
-          testTimeout: 30000,
-          hookTimeout: 30000,
           name: 'integration',
           include: ['**/*.int.spec.ts'],
+          testTimeout: 30000,
+          hookTimeout: 30000,
+          sequence: { concurrent: false, groupOrder: 2 },
+
           // Can override shared config if needed, e.g., environment: 'node'
         },
       },
