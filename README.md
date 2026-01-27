@@ -296,6 +296,7 @@ The following explains how the authentication is set and configured for the temp
 **You can modify any of these defaults to suit your own needs**.
 
 JWT access token is used for stateless authentication.
+
 JWT refresh token used for token revalidation with a specific `check` claim and sent in `httpOnly` `signed` `secure` `SameSite=strict` cookie.
 
 Refresh token is stored in cache for token rotation and invalidation. Its key contains the user's id. Its value contains user information (id, roles and active status) and a hash to be checked against the `check` claim.
