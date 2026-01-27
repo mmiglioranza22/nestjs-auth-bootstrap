@@ -206,7 +206,7 @@ Each project handles authorization differently (this template uses **role based*
 
 4. _**Still JWT are not safe against CSRF threats, they are useless against them!**_:
 
-These claims stem from those how do not understand the purpose of JWTs, the same way someone would state a screwdriver is useless for the purpose of hammering nails: it is just not the tool for that.
+These claims stem from not understanding the purpose of JWTs and is analog to stating that a screwdriver is useless for the purpose of hammering nails: it is just not the tool for that.
 
 CSRF threats are addressed by CSRF specific solutions, which this template conveniently has by implementing the signed double submit CSRF pattern. This implementation was developed with AI and tested for common pitfalls (timing attacks for different token lengths) and is transparent for you to check it out, enhance or modify it completely. You can check how it was developed [here](https://github.com/mmiglioranza22/chatgptools/blob/fcaff05045a8751c65779681496577279be8bfc0/csrf_utils/README.md).
 
