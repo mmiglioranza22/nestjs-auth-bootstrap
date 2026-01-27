@@ -97,13 +97,13 @@ License is MIT
   <br>
   - `x-csrf-token` header and `__Host-csrf` cookie token
     <br>
-- Cache store for token rotation on each token revalidation and user logout (**Redis** implementation)
+- Cache store for token rotation (**Redis** implementation)
   <br>
 - Docker compose files to work with your development and test environments
   <br>
-- Unit and integration testing (Vitest + [Testcontainers](https://testcontainers.com/)). (Optional docker compose tests too if you don't want to use Testcontainers)
+- Unit and integration testing (Vitest + [Testcontainers](https://testcontainers.com/)) (Optional docker compose tests too if you don't want to use Testcontainers)
   <br>
-- Basic mail service (`nodemailer` solution with `mailtrap`. You can configure it or change it completely for a different provider)
+- Basic mail service (`nodemailer` solution with `mailtrap`. You can configure it or change it completely for your provider of choice)
   <br>
 - Swagger docs (`/api/swagger`)
   <br>
