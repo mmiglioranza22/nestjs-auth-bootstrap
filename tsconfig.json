@@ -15,7 +15,8 @@
     "paths": {
       "src/*": ["src/*"],
       "@common/*": ["src/common/*"],
-      "@auth/*": ["src/resources/auth/*"]
+      "@auth/*": ["src/resources/auth/*"],
+      "test/*": ["test/*"]
     },
     "incremental": true,
     "skipLibCheck": true,

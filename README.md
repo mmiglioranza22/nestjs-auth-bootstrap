@@ -388,7 +388,7 @@ That being said, user roles work like this:
 
 [x] Admins can only assign admin roles and less priviledge roles, to themselves or other users.
 
-[x] Users with plain user and guest roles can't modify any of their own roles, nor modify other users roles
+[x] Users with plain user and guest roles can't modify any of their own roles, nor modify other users roles.
 
 [x] Personal data (like email and password) can only be modified by the users that are affected (Sysadmin can't modify these, yet it can revoke all access/delete any user).
 
