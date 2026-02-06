@@ -11,6 +11,7 @@ export class RecoveryTokenService {
     private readonly recoveryTokenRepository: Repository<RecoveryToken>,
   ) {}
 
+  // ? could check the token sent with a "hash" in database
   async getRecoveryToken(token: string): Promise<RecoveryToken | null> {
     return await this.recoveryTokenRepository.findOne({
       where: { token },
@@ -20,7 +21,7 @@ export class RecoveryTokenService {
   async createRecoveryToken(userId: string): Promise<string> {
     const token = generateRandomUUID();
     const recoveryToken = this.recoveryTokenRepository.create({
-      token,
+      token, // ? could save a hash instead
       userId,
       expiresAt: calculateFutureUTCDate(24),
     });
