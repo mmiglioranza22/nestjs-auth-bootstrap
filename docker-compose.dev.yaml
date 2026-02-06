@@ -19,7 +19,7 @@ services:
     restart: always
     ports:
       - "6379:6379"
-    container_name: cache_dev
+    container_name: nestjs_auth_cache_dev
     volumes:
       - ./redis_data:/data
     depends_on:
