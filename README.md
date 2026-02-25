@@ -41,7 +41,7 @@ Of course, you will spend time reading the code and making a sense out of it the
 
 We are confident the code is clear (comments help a lot, same as tests) and in case of unsolvable doubt you can always open an issue asking for clarifications. We are glad to help!
 
-# Why this?
+## Why this?
 
 There are already great solutions like the one provided by brocoders [nesjt-boilerplate](https://github.com/brocoders/nestjs-boilerplate/tree/main) (you should definitly check it out) which can feel overwhelming at first by the sheer amount of features and options you have to choose from.
 
